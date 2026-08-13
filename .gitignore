@@ -1,0 +1,18 @@
+# Sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+
+# Dependências / builds
+node_modules/
+dist/
+build/
+
+# Arquivos locais
+.env
+.env.*
+*.log

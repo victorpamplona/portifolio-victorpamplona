@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Victor Pamplona | Criação de Sites e Desenvolvimento Web</title>
+<meta name="description" content="Criação de sites, landing pages e experiências digitais modernas para empresas e profissionais. Desenvolva uma presença digital profissional com Victor Pamplona.">
+<meta name="theme-color" content="#070A0F">
+<link rel="icon" type="image/png" sizes="1024x1024" href="assets/branding/favicon-vp.png">
+<link rel="apple-touch-icon" href="assets/branding/favicon-vp.png">
+<meta name="author" content="Victor Pamplona">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Victor Pamplona | Criação de Sites e Desenvolvimento Web">
+<meta property="og:description" content="Sites institucionais, landing pages e experiências digitais para empresas e profissionais que querem uma presença digital à altura do seu trabalho.">
+<meta property="og:locale" content="pt_BR">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<header class="navbar" id="navbar">
+  <div class="container navbar__inner">
+    <a href="#topo" class="navbar__logo" aria-label="Victor Pamplona — início">
+      <img src="assets/branding/logo-vp.png" alt="Victor Pamplona" class="navbar__logo-image" width="128" height="48">
+    </a>
+
+    <nav class="navbar__links" aria-label="Navegação principal">
+      <a href="#topo">Início</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#processo">Processo</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <div class="navbar__cta">
+      <a href="#" data-whatsapp class="btn btn-primary">
+        <span>Falar comigo</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <button class="navbar__burger" id="burger" aria-label="Abrir menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-menu" id="mobileMenu" aria-label="Navegação mobile">
+  <a href="#topo">Início</a>
+  <a href="#servicos">Serviços</a>
+  <a href="#projetos">Projetos</a>
+  <a href="#processo">Processo</a>
+  <a href="#sobre">Sobre</a>
+  <a href="#faq">FAQ</a>
+  <a href="#" data-whatsapp class="btn btn-primary btn-block">Falar comigo →</a>
+</nav>
+
+<main id="conteudo-principal">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="topo">
+    <div class="container hero__grid">
+      <div class="hero__content" data-reveal>
+        <span class="eyebrow">Desenvolvimento Web • Design • Experiências Digitais</span>
+        <h1>Seu negócio merece uma presença digital à altura.</h1>
+        <p class="hero__sub body-lg">Crio sites institucionais, landing pages e experiências digitais personalizadas para empresas e profissionais que desejam fortalecer sua marca, comunicar seu valor com mais clareza e construir uma presença profissional na internet.</p>
+
+        <div class="hero__actions">
+          <a href="#" data-whatsapp data-whatsapp-message="Olá, Victor! Quero criar meu site e gostaria de entender como funciona." class="btn btn-primary">
+            Quero criar meu site
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#projetos" class="btn btn-secondary">Ver projetos</a>
+        </div>
+
+        <div class="hero__micro small">
+          <span class="hero__micro-dot" aria-hidden="true"></span>
+          Atendimento direto com o desenvolvedor. Sem intermediários.
+        </div>
+
+        <div class="hero__proof">
+          <a href="#projetos" class="hero__proof-item" style="text-decoration:none;">
+            <span class="small text-blue" style="font-weight:600;">Projeto em destaque ↓</span>
+            <span class="body" style="color:var(--title); font-size:14.5px;">Marcelo Neto Advocacia — Direito Previdenciário</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero__visual" data-reveal style="transition-delay:.12s;">
+        <div class="mockup">
+          <div class="mockup__bar">
+            <span class="mockup__dot"></span><span class="mockup__dot"></span><span class="mockup__dot"></span>
+          </div>
+          <div class="mockup__screen">
+            <div class="mockup__row">
+              <span class="mockup__pill w-25"></span>
+              <span class="mockup__tag">UI</span>
+            </div>
+            <span class="mockup__pill w-80" style="height:16px;"></span>
+            <span class="mockup__pill w-60"></span>
+            <span class="mockup__pill w-40"></span>
+            <div class="mockup__blockgrid">
+              <div class="mockup__block mockup__block--accent"></div>
+              <div class="mockup__block"></div>
+              <div class="mockup__block"></div>
+            </div>
+          </div>
+          <div class="mockup mockup--phone">
+            <div class="mockup__bar"><span class="mockup__dot"></span></div>
+            <div class="mockup__screen">
+              <span class="mockup__pill w-60"></span>
+              <span class="mockup__pill w-40"></span>
+              <div class="mockup__block mockup__block--accent"></div>
+              <div class="mockup__block"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROBLEMA / OPORTUNIDADE ============ -->
+  <section class="section section--tight">
+    <div class="container problem__grid">
+      <div data-reveal>
+        <span class="eyebrow">Por que isso importa</span>
+        <h2>A primeira impressão da sua marca também acontece na internet.</h2>
+      </div>
+      <div data-reveal style="transition-delay:.1s;">
+        <p class="body-lg">Seu cliente pesquisa. Compara. Avalia.</p>
+        <p class="body-lg" style="margin-top:14px;">Antes mesmo de enviar uma mensagem, muitas vezes ele já teve contato com a sua marca através da internet. Por isso, ter apenas uma presença digital não é suficiente. É preciso ter uma presença que represente a qualidade do seu trabalho.</p>
+        <p class="body-lg" style="margin-top:14px;">Um site bem construído organiza sua comunicação, apresenta seus serviços com clareza e cria um espaço próprio para que sua marca seja percebida de forma mais profissional.</p>
+
+        <div class="problem__highlight">
+          <p class="text-title" style="font-family:var(--font-display); font-weight:600; font-size:18px;">Seu site deve fazer mais do que existir.</p>
+          <p class="body">Ele deve comunicar quem você é, o que você oferece e por que vale a pena conhecer seu trabalho.</p>
+        </div>
+
+        <a href="#" data-whatsapp data-whatsapp-message="Olá, Victor! Quero melhorar minha presença digital." class="btn btn-primary" style="margin-top:32px;">
+          Quero melhorar minha presença digital
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVIÇOS ============ -->
+  <section class="section" id="servicos">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">Serviços</span>
+        <h2>Soluções digitais pensadas para o seu negócio.</h2>
+        <p class="body-lg" style="margin-top:18px;">Cada projeto possui uma necessidade diferente. Por isso, o desenvolvimento parte do entendimento do seu negócio, do seu público e do objetivo que você deseja alcançar.</p>
+      </div>
+
+      <div class="services__grid" data-reveal-group>
+        <article class="card service-card" data-reveal>
+          <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg></div>
+          <h3>Sites Institucionais</h3>
+          <p>Uma presença digital profissional para apresentar sua empresa. Desenvolvo sites institucionais que organizam suas informações, apresentam seus serviços e ajudam seu público a entender rapidamente o que sua empresa oferece.</p>
+          <p class="service-card__benefit">Transforme informações dispersas em uma experiência digital clara, profissional e alinhada à sua marca.</p>
+          <a href="#" data-whatsapp data-whatsapp-message="Olá, Victor! Quero um site institucional para minha empresa." class="service-card__cta">Quero um site institucional <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </article>
+
+        <article class="card service-card" data-reveal style="transition-delay:.06s;">
+          <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+          <h3>Landing Pages</h3>
+          <p>Uma página construída para uma ação específica. Landing pages são desenvolvidas com foco e propósito: apresentar uma oferta, divulgar um serviço, apoiar uma campanha ou facilitar a geração de novos contatos.</p>
+          <p class="service-card__benefit">Menos distrações. Mais clareza sobre aquilo que você quer comunicar.</p>
+          <a href="#" data-whatsapp data-whatsapp-message="Olá, Victor! Quero criar minha landing page." class="service-card__cta">Criar minha landing page <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </article>
+
+        <article class="card service-card" data-reveal style="transition-delay:.12s;">
+          <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+          <h3>Portfólios Profissionais</h3>
+          <p>Mostre o seu trabalho com a apresentação que ele merece. Um portfólio pode contar sua trajetória, demonstrar sua experiência e apresentar seu trabalho de maneira estratégica.</p>
+          <p class="service-card__benefit">Transforme seus projetos e experiências em uma apresentação profissional capaz de transmitir mais autoridade.</p>
+          <a href="#" data-whatsapp data-whatsapp-message="Olá, Victor! Quero apresentar meu trabalho em um portfólio." class="service-card__cta">Quero apresentar meu trabalho <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </article>
+
+        <article class="card service-card" data-reveal style="transition-delay:.18s;">
+          <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg></div>
+          <h3>Experiências Digitais Personalizadas</h3>
+          <p>Quando o projeto exige algo além do convencional. Desenvolvo experiências digitais personalizadas que combinam interface, usabilidade e tecnologia.</p>
+          <p class="service-card__benefit">Tenha uma experiência digital desenvolvida para a realidade do seu negócio.</p>
+          <a href="#" data-whatsapp data-whatsapp-message="Olá, Victor! Quero falar sobre um projeto digital personalizado." class="service-card__cta">Falar sobre meu projeto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJETOS ============ -->
+  <section class="section" id="projetos" style="background:var(--bg-secondary); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">Projetos</span>
+        <h2>Projetos reais. Experiências digitais construídas na prática.</h2>
+        <p class="body-lg" style="margin-top:18px;">Cada projeto começa com uma necessidade diferente. Meu trabalho é transformar essa necessidade em uma experiência digital que combine design, tecnologia, usabilidade e propósito.</p>
+      </div>
+
+      <div class="projects__grid">
+
+        <!-- Projeto real: Marcelo Neto Advocacia -->
+        <article class="project-card" data-reveal>
+          <div class="project-card__visual">
+            <img src="assets/images/projects/marcelo-neto-advocacia.webp" alt="Captura de tela do site Marcelo Neto Advocacia" loading="lazy" class="project-visual-img">
+          </div>
+          <div class="project-card__body">
+            <div class="project-card__meta">
+              <span class="project-tag project-tag--blue">Website institucional</span>
+              <span class="project-tag">Direito Previdenciário</span>
+            </div>
+            <h3>Marcelo Neto Advocacia</h3>
+            <p class="project-card__desc body">Central de atendimento digital para um advogado previdenciarista, desenvolvida para apresentar o profissional (OAB/PA 26664) de forma confiável e organizar os principais benefícios do INSS — aposentadoria, BPC/LOAS, benefício por incapacidade, salário-maternidade, pensão por morte e pescador artesanal — em uma estrutura clara e fácil de navegar.</p>
+            <p class="small" style="margin-bottom:20px;">O site conduz o visitante por um fluxo de análise previdenciária gratuita, com checklist de documentos e contato direto pelo WhatsApp.</p>
+            <div class="project-card__focus">
+              <span class="focus-chip">Presença digital</span>
+              <span class="focus-chip">Credibilidade</span>
+              <span class="focus-chip">Geração de leads</span>
+              <span class="focus-chip">Conversão via WhatsApp</span>
+            </div>
+            <div class="project-card__footer">
+              <a href="https://marcelonetosite.vercel.app/" target="_blank" rel="noopener" class="project-card__link">
+                Ver projeto
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+              </a>
+              <a href="marcelo-neto-advocacia.html" class="project-card__case">Ver case completo →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Projeto real: Odontopp -->
+        <article class="project-card" data-reveal>
+          <div class="project-card__visual">
+            <img src="assets/images/projects/odontopp.webp" alt="Captura de tela do site Odontopp Clínica Odontológica" loading="lazy" class="project-visual-img">
+          </div>
+          <div class="project-card__body">
+            <div class="project-card__meta">
+              <span class="project-tag project-tag--blue">Website institucional</span>
+              <span class="project-tag">Clínica Odontológica</span>
+            </div>
+            <h3>Odontopp</h3>
+            <p class="project-card__desc body">Site institucional para uma clínica odontológica em Belém, apresentando os tratamentos e diferenciais da clínica com uma comunicação voltada à estética e ao cuidado, e conduzindo o visitante a agendar uma avaliação.</p>
+            <p class="small" style="margin-bottom:20px;">Estrutura com seções de tratamentos, diferenciais e localização, com CTA de agendamento em destaque logo na primeira dobra.</p>
+            <div class="project-card__focus">
+              <span class="focus-chip">Presença digital</span>
+              <span class="focus-chip">Agendamento de avaliação</span>
+              <span class="focus-chip">Identidade visual clínica</span>
+            </div>
+            <div class="project-card__footer">
+              <a href="https://odontopp.vercel.app/" target="_blank" rel="noopener" class="project-card__link">
+                Ver projeto
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Projeto real: Escola CP Vôlei -->
+        <article class="project-card" data-reveal>
+          <div class="project-card__visual">
+            <img src="assets/images/projects/cp-volei.webp" alt="Captura de tela do site Escola CP Vôlei" loading="lazy" class="project-visual-img">
+          </div>
+          <div class="project-card__body">
+            <div class="project-card__meta">
+              <span class="project-tag project-tag--blue">Website institucional</span>
+              <span class="project-tag">Escola Esportiva</span>
+            </div>
+            <h3>Escola CP Vôlei</h3>
+            <p class="project-card__desc body">Site para uma escola de vôlei em Belém, com uma comunicação de alta energia para apresentar as turmas (adultos, iniciantes e kids) e converter o visitante em uma aula experimental gratuita.</p>
+            <p class="small" style="margin-bottom:20px;">Identidade visual escura e impactante, com CTA de aula experimental repetido nos principais pontos da página e contato direto pelo WhatsApp.</p>
+            <div class="project-card__focus">
+              <span class="focus-chip">Captação de alunos</span>
+              <span class="focus-chip">Aula experimental grátis</span>
+              <span class="focus-chip">Conversão via WhatsApp</span>
+            </div>
+            <div class="project-card__footer">
+              <a href="https://cpvolei.vercel.app/" target="_blank" rel="noopener" class="project-card__link">
+                Ver projeto
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DIFERENCIAIS ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">Diferenciais</span>
+        <h2>Tecnologia é apenas o começo.</h2>
+        <p class="body-lg" style="margin-top:18px;">Um bom projeto não depende apenas de código. Ele precisa entender o negócio, respeitar a identidade da marca e oferecer uma experiência que faça sentido para quem está do outro lado da tela.</p>
+      </div>
+
+      <div class="diff__grid">
+        <div class="card diff-card" data-reveal>
+          <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-11M12 6V3M20 21v-5M20 12V3M1 14h6M9 6h6M17 16h6"/></svg></div>
+          <h3>Desenvolvimento personalizado</h3>
+          <p class="body">Seu projeto não precisa parecer com todos os outros. Cada solução é estruturada considerando as necessidades, objetivos e características da sua marca.</p>
+        </div>
+        <div class="card diff-card" data-reveal style="transition-delay:.05s;">
+          <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div>
+          <h3>Atendimento direto</h3>
+          <p class="body">Você conversa diretamente com quem desenvolve. Sem camadas desnecessárias de comunicação.</p>
+        </div>
+        <div class="card diff-card" data-reveal style="transition-delay:.1s;">
+          <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3zM18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5zM2 2l7.586 7.586M11 13a2 2 0 104 0 2 2 0 00-4 0z"/></svg></div>
+          <h3>Design + desenvolvimento</h3>
+          <p class="body">Uma boa experiência começa antes do primeiro clique.</p>
+        </div>
+        <div class="card diff-card" data-reveal style="transition-delay:.15s;">
+          <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+          <h3>Agilidade</h3>
+          <p class="body">Processos organizados para tirar sua ideia do papel.</p>
+        </div>
+        <div class="card diff-card" data-reveal style="transition-delay:.2s;">
+          <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
+          <h3>Responsividade</h3>
+          <p class="body">Uma experiência preparada para qualquer tela.</p>
+        </div>
+        <div class="card diff-card" data-reveal style="transition-delay:.25s;">
+          <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M11 3L8 9l4 12 4-12-3-6M2 9h20"/></svg></div>
+          <h3>Atenção aos detalhes</h3>
+          <p class="body">Porque são os detalhes que transformam uma interface comum em uma experiência memorável.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BENEFÍCIOS ============ -->
+  <section class="section benefits">
+    <div class="container benefits__grid">
+      <div data-reveal>
+        <span class="eyebrow">Benefícios</span>
+        <h2>Mais do que um site. Uma presença digital profissional.</h2>
+      </div>
+      <ul class="benefits__list" data-reveal style="transition-delay:.1s;">
+        <li class="benefits__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Mais credibilidade</li>
+        <li class="benefits__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Mais clareza</li>
+        <li class="benefits__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Mais autoridade</li>
+        <li class="benefits__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Mais facilidade de contato</li>
+        <li class="benefits__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Melhor experiência em diferentes dispositivos</li>
+        <li class="benefits__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Espaço próprio para sua marca</li>
+        <li class="benefits__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Estrutura preparada para crescer</li>
+        <li class="benefits__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Comunicação alinhada ao posicionamento da empresa</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ PROCESSO ============ -->
+  <section class="section" id="processo">
+    <div class="container">
+      <div class="section-head section-head--center" data-reveal style="margin-left:auto;margin-right:auto;">
+        <span class="eyebrow" style="justify-content:center;">Processo</span>
+        <h2>Do primeiro contato ao projeto publicado.</h2>
+      </div>
+
+      <div class="process__timeline" data-reveal>
+        <div class="process-step"><span class="process-step__num">01</span><h3>Conversa</h3><p>Tudo começa entendendo o que você precisa.</p></div>
+        <div class="process-step"><span class="process-step__num">02</span><h3>Entendimento</h3><p>Analisamos objetivos, público, estrutura e necessidades.</p></div>
+        <div class="process-step"><span class="process-step__num">03</span><h3>Planejamento</h3><p>Definimos a direção do projeto.</p></div>
+        <div class="process-step"><span class="process-step__num">04</span><h3>Design</h3><p>A ideia começa a ganhar forma.</p></div>
+        <div class="process-step"><span class="process-step__num">05</span><h3>Desenvolvimento</h3><p>O design se transforma em uma experiência funcional.</p></div>
+        <div class="process-step"><span class="process-step__num">06</span><h3>Publicação</h3><p>O projeto é preparado e publicado.</p></div>
+      </div>
+
+      <div class="process__cta">
+        <a href="#" data-whatsapp data-whatsapp-message="Olá, Victor! Quero começar meu projeto." class="btn btn-primary">
+          Quero começar meu projeto
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOBRE VICTOR ============ -->
+  <section class="section" id="sobre" style="background:var(--bg-secondary); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="container about__grid">
+      <div data-reveal>
+        <div class="about__photo-frame">
+          <img
+            src="assets/images/profile/victor-pamplona-foto.png"
+            alt="Victor Pamplona, desenvolvedor web, usando terno preto em um ambiente profissional"
+            class="about__photo"
+            width="1145"
+            height="1374"
+            loading="lazy"
+          >
+        </div>
+      </div>
+      <div data-reveal style="transition-delay:.1s;" class="about">
+        <span class="eyebrow">Sobre</span>
+        <h2>Prazer, sou Victor Pamplona.</h2>
+
+        <div class="about__badges">
+          <div class="about__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Desenvolvimento web e design de experiência</div>
+          <div class="about__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Atendimento direto, sem intermediários</div>
+          <div class="about__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Projetos publicados e em uso real</div>
+        </div>
+
+        <p class="body-lg">Sou desenvolvedor e trabalho na criação de sites, landing pages e experiências digitais para empresas e profissionais que desejam construir uma presença online mais profissional.</p>
+        <p class="body-lg">Meu trabalho combina desenvolvimento, design e atenção aos detalhes para transformar necessidades reais em soluções digitais funcionais e visualmente consistentes.</p>
+        <p class="body-lg">Acredito que um bom site não deve apenas apresentar informações. Ele deve entender o negócio por trás da marca, facilitar a comunicação e criar uma experiência coerente para quem chega até ela.</p>
+        <p class="body-lg">Por isso, cada projeto começa antes do código. Começa entendendo quem você é, o que você oferece e o que deseja comunicar.</p>
+
+        <a href="#" data-whatsapp data-whatsapp-message="Olá, Victor! Vamos conversar sobre meu projeto?" class="btn btn-primary" style="margin-top:30px;">
+          Vamos conversar sobre seu projeto
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROVA SOCIAL ============ -->
+  <section class="section section--tight">
+    <div class="container">
+      <div class="section-head section-head--center" data-reveal style="margin-left:auto;margin-right:auto;">
+        <span class="eyebrow" style="justify-content:center;">Números</span>
+        <h2>Resultados em construção — cada projeto conta uma parte da história.</h2>
+      </div>
+      <!-- TODO: substituir pelos números reais assim que disponíveis -->
+      <!--<div class="proof__grid" data-reveal style="transition-delay:.1s;">
+        <div class="proof-card"><div class="proof-card__num">[XX]+</div><div class="proof-card__label">Projetos desenvolvidos</div></div>
+        <div class="proof-card"><div class="proof-card__num">[XX]+</div><div class="proof-card__label">Clientes atendidos</div></div>
+        <div class="proof-card"><div class="proof-card__num">[XX]</div><div class="proof-card__label">Segmentos atendidos</div></div>>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- ============ FAQ ============ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">Perguntas frequentes</span>
+        <h2>Ainda com dúvidas?</h2>
+      </div>
+
+      <div class="faq__list" data-reveal>
+        <div class="faq-item">
+          <button class="faq-item__q" aria-expanded="false">Quanto custa criar um site?<svg class="faq-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-item__a"><p class="body">O investimento depende do tipo de projeto, quantidade de páginas, funcionalidades e nível de personalização. Após entender sua necessidade, será possível definir uma solução adequada.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__q" aria-expanded="false">Quanto tempo leva para desenvolver?<svg class="faq-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-item__a"><p class="body">O prazo depende da complexidade, quantidade de páginas e velocidade de aprovação dos materiais.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__q" aria-expanded="false">O site funciona no celular?<svg class="faq-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-item__a"><p class="body">Sim. Os projetos são desenvolvidos de forma responsiva.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__q" aria-expanded="false">Preciso ter textos e imagens prontos?<svg class="faq-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-item__a"><p class="body">Não necessariamente. Os materiais disponíveis podem ser analisados durante o planejamento.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__q" aria-expanded="false">Vocês criam apenas o design?<svg class="faq-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-item__a"><p class="body">O projeto pode envolver planejamento, design e desenvolvimento, conforme a necessidade.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__q" aria-expanded="false">Posso solicitar alterações?<svg class="faq-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-item__a"><p class="body">Sim. O projeto possui etapas de revisão e ajustes conforme o escopo.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__q" aria-expanded="false">O site pode aparecer no Google?<svg class="faq-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-item__a"><p class="body">O desenvolvimento pode seguir boas práticas técnicas de SEO, sem prometer posicionamento específico.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__q" aria-expanded="false">Existe manutenção?<svg class="faq-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-item__a"><p class="body">A manutenção pode ser definida conforme as necessidades do projeto.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__q" aria-expanded="false">Como começo?<svg class="faq-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-item__a"><p class="body">Basta enviar uma mensagem pelo WhatsApp contando brevemente sobre o projeto.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA FINAL ============ -->
+  <section class="cta-final">
+    <div class="container cta-final__inner" data-reveal>
+      <h2>Sua próxima presença digital pode começar aqui.</h2>
+      <p class="body-lg">Se você já tem uma ideia, podemos conversar sobre ela. Se ainda não sabe exatamente o que precisa, também podemos começar pelo problema. Conte o que você deseja construir e vamos entender juntos o melhor caminho para o seu projeto.</p>
+      <div class="cta-final__actions">
+        <a href="#" data-whatsapp class="btn btn-primary">
+          Falar com Victor pelo WhatsApp
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+        </a>
+      </div>
+      <p class="small cta-final__micro">Atendimento direto. Conversa inicial sem compromisso.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ RODAPÉ ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div>
+        <a href="#topo" class="footer__logo" aria-label="Victor Pamplona — início">
+          <img src="assets/branding/logo-vp.png" alt="Victor Pamplona" class="footer__logo-image" width="160" height="70">
+        </a>
+        <p class="footer__desc small">Desenvolvimento Web &amp; Experiências Digitais.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Navegação</h4>
+        <a href="#topo">Início</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#processo">Processo</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="footer__col">
+        <h4>Contato</h4>
+        <a href="#" data-whatsapp>WhatsApp</a>
+        <a href="#" data-instagram>Instagram</a>
+        <a href="#" data-email>E-mail</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span class="small">© 2026 Victor Pamplona. Todos os direitos reservados.</span>
+      <div class="footer__socials">
+        <a href="#" data-whatsapp aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></a>
+        <a href="#" data-instagram aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><path d="M17.5 6.5h.01"/></svg></a>
+        <a href="#" data-email aria-label="E-mail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ WHATSAPP FLUTUANTE ============ -->
+<a href="#" data-whatsapp class="wa-float" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+  <span>Vamos conversar?</span>
+</a>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>
