@@ -93,6 +93,56 @@ document.addEventListener('DOMContentLoaded', () => {
     revealEls.forEach(el => el.classList.add('is-visible'));
   }
 
+  /* ---- Projects carousel ---- */
+  const projectsCarousel = document.querySelector('[data-projects-carousel]');
+  if (projectsCarousel) {
+    const track = projectsCarousel.querySelector('.projects-carousel__track');
+    const slides = Array.from(projectsCarousel.querySelectorAll('.project-card--carousel'));
+    const prev = projectsCarousel.querySelector('[data-project-prev]');
+    const next = projectsCarousel.querySelector('[data-project-next]');
+    const current = projectsCarousel.querySelector('[data-project-current]');
+    let index = 0;
+
+    const renderCarousel = () => {
+      if (!track || !slides.length) return;
+      const gap = parseFloat(getComputedStyle(track).gap) || 0;
+      const width = slides[0].getBoundingClientRect().width + gap;
+      track.style.transform = `translate3d(-${index * width}px, 0, 0)`;
+      if (current) current.textContent = String(index + 1).padStart(2, '0');
+      if (prev) prev.disabled = index === 0;
+      if (next) next.disabled = index === slides.length - 1;
+    };
+
+    const goTo = (nextIndex) => {
+      index = Math.max(0, Math.min(slides.length - 1, nextIndex));
+      renderCarousel();
+    };
+
+    prev?.addEventListener('click', () => goTo(index - 1));
+    next?.addEventListener('click', () => goTo(index + 1));
+    window.addEventListener('resize', renderCarousel);
+
+    projectsCarousel.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') goTo(index - 1);
+      if (event.key === 'ArrowRight') goTo(index + 1);
+    });
+    projectsCarousel.setAttribute('tabindex', '0');
+
+    // Touch swipe on mobile.
+    let touchStartX = null;
+    projectsCarousel.addEventListener('touchstart', (event) => {
+      touchStartX = event.changedTouches[0].clientX;
+    }, { passive: true });
+    projectsCarousel.addEventListener('touchend', (event) => {
+      if (touchStartX === null) return;
+      const dx = event.changedTouches[0].clientX - touchStartX;
+      touchStartX = null;
+      if (Math.abs(dx) > 45) goTo(index + (dx < 0 ? 1 : -1));
+    }, { passive: true });
+
+    renderCarousel();
+  }
+
   /* ---- Optional contact form -> redirects to WhatsApp with prefilled context ---- */
   const form = document.querySelector('#contact-form');
   if (form) {
