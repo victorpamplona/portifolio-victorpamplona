@@ -104,11 +104,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const current = projectsCarousel.querySelector('[data-project-current]');
     let index = 0;
     let dragging = false;
-    let moved = false;
-    let startX = 0;
-    let startTranslate = 0;
-    let suppressClick = false;
     let pointerId = null;
+    let startX = 0;
+    let baseTranslate = 0;
+    let didDrag = false;
 
     const getStep = () => {
       if (!track || !slides.length) return 0;
@@ -135,23 +134,17 @@ document.addEventListener('DOMContentLoaded', () => {
     next?.addEventListener('click', () => goTo(index + 1));
     window.addEventListener('resize', () => renderCarousel(false));
 
-    // Keyboard support remains available, but never steals mouse input.
-    projectsCarousel.addEventListener('keydown', (event) => {
-      if (event.key === 'ArrowLeft') goTo(index - 1);
-      if (event.key === 'ArrowRight') goTo(index + 1);
-    });
-
-    // True mouse/touch drag. A click still works normally when movement is below the drag threshold.
     const onPointerDown = (event) => {
-      if (!viewport || !track) return;
+      if (!viewport || !track || slides.length < 2) return;
       if (event.pointerType === 'mouse' && event.button !== 0) return;
+      // Buttons/links should remain ordinary clickable controls.
       if (event.target.closest('a, button')) return;
+
       dragging = true;
-      moved = false;
-      suppressClick = false;
+      didDrag = false;
       pointerId = event.pointerId;
       startX = event.clientX;
-      startTranslate = -(index * getStep());
+      baseTranslate = -(index * getStep());
       track.style.transition = 'none';
       viewport.classList.add('is-dragging');
       try { viewport.setPointerCapture(pointerId); } catch (_) {}
@@ -160,45 +153,54 @@ document.addEventListener('DOMContentLoaded', () => {
     const onPointerMove = (event) => {
       if (!dragging || event.pointerId !== pointerId) return;
       const dx = event.clientX - startX;
-      if (Math.abs(dx) > 6) moved = true;
-      const maxLeft = -((slides.length - 1) * getStep());
-      const nextTranslate = Math.max(maxLeft, Math.min(0, startTranslate + dx));
-      track.style.transform = `translate3d(${nextTranslate}px, 0, 0)`;
-      if (moved) event.preventDefault();
+      if (Math.abs(dx) > 5) didDrag = true;
+      const step = getStep();
+      const maxTranslate = -((slides.length - 1) * step);
+      const translate = Math.max(maxTranslate, Math.min(0, baseTranslate + dx));
+      track.style.transform = `translate3d(${translate}px, 0, 0)`;
+      if (didDrag) event.preventDefault();
     };
 
-    const finishPointer = (event) => {
+    const onPointerUp = (event) => {
       if (!dragging || event.pointerId !== pointerId) return;
       const dx = event.clientX - startX;
       dragging = false;
       pointerId = null;
       viewport.classList.remove('is-dragging');
-      if (Math.abs(dx) > 45) {
-        suppressClick = true;
+
+      if (Math.abs(dx) >= 45) {
         goTo(index + (dx < 0 ? 1 : -1));
       } else {
         renderCarousel(true);
       }
-      // Do not keep a click suppressed after the current event turn.
-      if (suppressClick) setTimeout(() => { suppressClick = false; }, 0);
     };
 
     viewport?.addEventListener('pointerdown', onPointerDown);
     viewport?.addEventListener('pointermove', onPointerMove, { passive: false });
-    viewport?.addEventListener('pointerup', finishPointer);
-    viewport?.addEventListener('pointercancel', finishPointer);
+    viewport?.addEventListener('pointerup', onPointerUp);
+    viewport?.addEventListener('pointercancel', onPointerUp);
     viewport?.addEventListener('lostpointercapture', () => {
-      if (dragging) { dragging = false; pointerId = null; viewport.classList.remove('is-dragging'); renderCarousel(true); }
+      if (!dragging) return;
+      dragging = false;
+      pointerId = null;
+      viewport.classList.remove('is-dragging');
+      renderCarousel(true);
     });
 
-    // Guard against a drag being interpreted as a link click.
+    // Prevent only the synthetic click that can follow a real drag.
     viewport?.addEventListener('click', (event) => {
-      if (suppressClick || moved) {
+      if (didDrag) {
         event.preventDefault();
         event.stopPropagation();
-        moved = false;
+        didDrag = false;
       }
     }, true);
+
+    // Keyboard navigation remains available when the carousel is focused.
+    projectsCarousel.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') goTo(index - 1);
+      if (event.key === 'ArrowRight') goTo(index + 1);
+    });
 
     renderCarousel(false);
   }

@@ -435,8 +435,9 @@ h3, .h3{
 
 /* ---------- Projects ---------- */
 .projects-carousel{ position:relative; }
-.projects-carousel__viewport{ overflow:hidden; border-radius:var(--radius-lg); touch-action:pan-y; cursor:grab; }
+.projects-carousel__viewport{ overflow:hidden; border-radius:var(--radius-lg); touch-action:pan-y; cursor:grab; user-select:none; -webkit-user-select:none; }
 .projects-carousel__viewport.is-dragging{ cursor:grabbing; }
+.projects-carousel__viewport img{ user-select:none; -webkit-user-drag:none; }
 .projects-carousel__track{ display:flex; gap:28px; transition:transform .55s var(--ease); will-change:transform; }
 .project-card--carousel{ flex:0 0 calc(100% - 72px); min-width:0; display:grid; grid-template-columns:1.02fr 1fr; background:var(--card); border:1px solid var(--border); border-radius:var(--radius-lg); overflow:hidden; transition:border-color .3s var(--ease), transform .3s var(--ease); }
 .project-card--carousel:hover{ border-color:var(--border-active); transform:translateY(-3px); }
@@ -457,12 +458,10 @@ h3, .h3{
 .project-card__focus{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:26px; }
 .focus-chip{ font-size:12.5px; color:var(--text-secondary); background:var(--bg-secondary); border:1px solid var(--border); padding:6px 11px; border-radius:20px; }
 .project-card__footer{ margin-top:auto; display:flex; align-items:center; gap:22px; flex-wrap:wrap; position:relative; z-index:4; }
-.project-card__link, .project-card__case{ position:relative; z-index:5; pointer-events:auto; cursor:pointer; }
+.project-card__link{ position:relative; z-index:5; pointer-events:auto; cursor:pointer; }
 .project-card__link{ font:600 14.5px var(--font-display); color:var(--title); display:inline-flex; align-items:center; gap:8px; }
 .project-card__link svg{ width:15px; height:15px; color:var(--blue); transition:transform .2s var(--ease); }
 .project-card__link:hover svg{ transform:translate(2px,-2px); }
-.project-card__case{ font-size:13.5px; color:var(--text-tertiary); }
-.project-card__case:hover{ color:var(--blue-hover); }
 .projects-carousel__controls{ display:flex; align-items:center; justify-content:center; gap:18px; margin-top:24px; }
 .carousel-control{ width:44px; height:44px; border-radius:50%; border:1px solid var(--border); background:var(--card); color:var(--title); font:600 18px var(--font-display); cursor:pointer; transition:all .2s var(--ease); }
 .carousel-control:hover:not(:disabled){ border-color:var(--border-active); transform:translateY(-2px); }
