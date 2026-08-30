@@ -46,43 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
-
-  /* ---- Scroll progress ---- */
-  const progress = document.querySelector('#scrollProgress span');
-  const updateProgress = () => {
-    if (!progress) return;
-    const doc = document.documentElement;
-    const max = doc.scrollHeight - window.innerHeight;
-    progress.style.width = `${max > 0 ? (window.scrollY / max) * 100 : 0}%`;
-  };
-  updateProgress();
-  window.addEventListener('scroll', updateProgress, { passive: true });
-
-  /* ---- Cursor spotlight (desktop only) ---- */
-  const cursorGlow = document.querySelector('#cursorGlow');
-  const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  if (cursorGlow && canHover) {
-    window.addEventListener('pointermove', (event) => {
-      cursorGlow.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
-      cursorGlow.classList.add('is-active');
-    }, { passive: true });
-  } else if (cursorGlow) {
-    cursorGlow.remove();
-  }
-
-  /* ---- Magnetic micro-interactions ---- */
-  if (canHover && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.querySelectorAll('.magnetic').forEach((el) => {
-      el.addEventListener('pointermove', (event) => {
-        const r = el.getBoundingClientRect();
-        const x = ((event.clientX - r.left) / r.width - 0.5) * 8;
-        const y = ((event.clientY - r.top) / r.height - 0.5) * 8;
-        el.style.transform = `translate(${x}px, ${y}px)`;
-      });
-      el.addEventListener('pointerleave', () => { el.style.transform = ''; });
-    });
-  }
-
   /* ---- Mobile menu ---- */
   const burger = document.querySelector('.navbar__burger');
   const mobileMenu = document.querySelector('.mobile-menu');
@@ -133,79 +96,111 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---- Projects carousel ---- */
   const projectsCarousel = document.querySelector('[data-projects-carousel]');
   if (projectsCarousel) {
+    const viewport = projectsCarousel.querySelector('.projects-carousel__viewport');
     const track = projectsCarousel.querySelector('.projects-carousel__track');
     const slides = Array.from(projectsCarousel.querySelectorAll('.project-card--carousel'));
     const prev = projectsCarousel.querySelector('[data-project-prev]');
     const next = projectsCarousel.querySelector('[data-project-next]');
     const current = projectsCarousel.querySelector('[data-project-current]');
-    const dots = Array.from(projectsCarousel.querySelectorAll('[data-project-dot]'));
     let index = 0;
+    let dragging = false;
+    let moved = false;
+    let startX = 0;
+    let startTranslate = 0;
+    let suppressClick = false;
+    let pointerId = null;
 
-    const renderCarousel = () => {
-      if (!track || !slides.length) return;
+    const getStep = () => {
+      if (!track || !slides.length) return 0;
       const gap = parseFloat(getComputedStyle(track).gap) || 0;
-      const width = slides[0].getBoundingClientRect().width + gap;
-      track.style.transform = `translate3d(-${index * width}px, 0, 0)`;
+      return slides[0].getBoundingClientRect().width + gap;
+    };
+
+    const renderCarousel = (animate = true) => {
+      if (!track || !slides.length) return;
+      const step = getStep();
+      track.style.transition = animate ? '' : 'none';
+      track.style.transform = `translate3d(-${index * step}px, 0, 0)`;
       if (current) current.textContent = String(index + 1).padStart(2, '0');
       if (prev) prev.disabled = index === 0;
       if (next) next.disabled = index === slides.length - 1;
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('is-active', i === index);
-        dot.setAttribute('aria-current', i === index ? 'true' : 'false');
-      });
-      slides.forEach((slide, i) => slide.setAttribute('aria-hidden', i === index ? 'false' : 'true'));
     };
 
     const goTo = (nextIndex) => {
       index = Math.max(0, Math.min(slides.length - 1, nextIndex));
-      renderCarousel();
+      renderCarousel(true);
     };
 
     prev?.addEventListener('click', () => goTo(index - 1));
     next?.addEventListener('click', () => goTo(index + 1));
-    dots.forEach((dot) => dot.addEventListener('click', () => goTo(Number(dot.dataset.projectDot))));
-    window.addEventListener('resize', renderCarousel);
+    window.addEventListener('resize', () => renderCarousel(false));
 
+    // Keyboard support remains available, but never steals mouse input.
     projectsCarousel.addEventListener('keydown', (event) => {
       if (event.key === 'ArrowLeft') goTo(index - 1);
       if (event.key === 'ArrowRight') goTo(index + 1);
     });
-    projectsCarousel.setAttribute('tabindex', '0');
 
-    let pointerStartX = null;
-    let pointerActive = false;
-    projectsCarousel.addEventListener('pointerdown', (event) => {
+    // True mouse/touch drag. A click still works normally when movement is below the drag threshold.
+    const onPointerDown = (event) => {
+      if (!viewport || !track) return;
       if (event.pointerType === 'mouse' && event.button !== 0) return;
-      pointerStartX = event.clientX;
-      pointerActive = true;
-      projectsCarousel.setPointerCapture?.(event.pointerId);
-    });
-    projectsCarousel.addEventListener('pointerup', (event) => {
-      if (!pointerActive || pointerStartX === null) return;
-      const dx = event.clientX - pointerStartX;
-      pointerStartX = null;
-      pointerActive = false;
-      if (Math.abs(dx) > 50) goTo(index + (dx < 0 ? 1 : -1));
-    });
-    projectsCarousel.addEventListener('pointercancel', () => { pointerStartX = null; pointerActive = false; });
-
-    // Gentle auto-advance only while the user is idle and when the section is visible.
-    let autoTimer = null;
-    const stopAuto = () => { if (autoTimer) window.clearInterval(autoTimer); autoTimer = null; };
-    const startAuto = () => {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      stopAuto();
-      autoTimer = window.setInterval(() => {
-        if (document.hidden) return;
-        goTo(index === slides.length - 1 ? 0 : index + 1);
-      }, 7000);
+      if (event.target.closest('a, button')) return;
+      dragging = true;
+      moved = false;
+      suppressClick = false;
+      pointerId = event.pointerId;
+      startX = event.clientX;
+      startTranslate = -(index * getStep());
+      track.style.transition = 'none';
+      viewport.classList.add('is-dragging');
+      try { viewport.setPointerCapture(pointerId); } catch (_) {}
     };
-    projectsCarousel.addEventListener('mouseenter', stopAuto);
-    projectsCarousel.addEventListener('mouseleave', startAuto);
-    projectsCarousel.addEventListener('focusin', stopAuto);
-    projectsCarousel.addEventListener('focusout', startAuto);
-    renderCarousel();
-    startAuto();
+
+    const onPointerMove = (event) => {
+      if (!dragging || event.pointerId !== pointerId) return;
+      const dx = event.clientX - startX;
+      if (Math.abs(dx) > 6) moved = true;
+      const maxLeft = -((slides.length - 1) * getStep());
+      const nextTranslate = Math.max(maxLeft, Math.min(0, startTranslate + dx));
+      track.style.transform = `translate3d(${nextTranslate}px, 0, 0)`;
+      if (moved) event.preventDefault();
+    };
+
+    const finishPointer = (event) => {
+      if (!dragging || event.pointerId !== pointerId) return;
+      const dx = event.clientX - startX;
+      dragging = false;
+      pointerId = null;
+      viewport.classList.remove('is-dragging');
+      if (Math.abs(dx) > 45) {
+        suppressClick = true;
+        goTo(index + (dx < 0 ? 1 : -1));
+      } else {
+        renderCarousel(true);
+      }
+      // Do not keep a click suppressed after the current event turn.
+      if (suppressClick) setTimeout(() => { suppressClick = false; }, 0);
+    };
+
+    viewport?.addEventListener('pointerdown', onPointerDown);
+    viewport?.addEventListener('pointermove', onPointerMove, { passive: false });
+    viewport?.addEventListener('pointerup', finishPointer);
+    viewport?.addEventListener('pointercancel', finishPointer);
+    viewport?.addEventListener('lostpointercapture', () => {
+      if (dragging) { dragging = false; pointerId = null; viewport.classList.remove('is-dragging'); renderCarousel(true); }
+    });
+
+    // Guard against a drag being interpreted as a link click.
+    viewport?.addEventListener('click', (event) => {
+      if (suppressClick || moved) {
+        event.preventDefault();
+        event.stopPropagation();
+        moved = false;
+      }
+    }, true);
+
+    renderCarousel(false);
   }
 
   /* ---- Optional contact form -> redirects to WhatsApp with prefilled context ---- */
