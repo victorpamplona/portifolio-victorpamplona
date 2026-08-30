@@ -46,6 +46,43 @@ document.addEventListener('DOMContentLoaded', () => {
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
+
+  /* ---- Scroll progress ---- */
+  const progress = document.querySelector('#scrollProgress span');
+  const updateProgress = () => {
+    if (!progress) return;
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - window.innerHeight;
+    progress.style.width = `${max > 0 ? (window.scrollY / max) * 100 : 0}%`;
+  };
+  updateProgress();
+  window.addEventListener('scroll', updateProgress, { passive: true });
+
+  /* ---- Cursor spotlight (desktop only) ---- */
+  const cursorGlow = document.querySelector('#cursorGlow');
+  const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (cursorGlow && canHover) {
+    window.addEventListener('pointermove', (event) => {
+      cursorGlow.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
+      cursorGlow.classList.add('is-active');
+    }, { passive: true });
+  } else if (cursorGlow) {
+    cursorGlow.remove();
+  }
+
+  /* ---- Magnetic micro-interactions ---- */
+  if (canHover && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.magnetic').forEach((el) => {
+      el.addEventListener('pointermove', (event) => {
+        const r = el.getBoundingClientRect();
+        const x = ((event.clientX - r.left) / r.width - 0.5) * 8;
+        const y = ((event.clientY - r.top) / r.height - 0.5) * 8;
+        el.style.transform = `translate(${x}px, ${y}px)`;
+      });
+      el.addEventListener('pointerleave', () => { el.style.transform = ''; });
+    });
+  }
+
   /* ---- Mobile menu ---- */
   const burger = document.querySelector('.navbar__burger');
   const mobileMenu = document.querySelector('.mobile-menu');
@@ -101,6 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const prev = projectsCarousel.querySelector('[data-project-prev]');
     const next = projectsCarousel.querySelector('[data-project-next]');
     const current = projectsCarousel.querySelector('[data-project-current]');
+    const dots = Array.from(projectsCarousel.querySelectorAll('[data-project-dot]'));
     let index = 0;
 
     const renderCarousel = () => {
@@ -111,6 +149,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (current) current.textContent = String(index + 1).padStart(2, '0');
       if (prev) prev.disabled = index === 0;
       if (next) next.disabled = index === slides.length - 1;
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('is-active', i === index);
+        dot.setAttribute('aria-current', i === index ? 'true' : 'false');
+      });
+      slides.forEach((slide, i) => slide.setAttribute('aria-hidden', i === index ? 'false' : 'true'));
     };
 
     const goTo = (nextIndex) => {
@@ -120,6 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     prev?.addEventListener('click', () => goTo(index - 1));
     next?.addEventListener('click', () => goTo(index + 1));
+    dots.forEach((dot) => dot.addEventListener('click', () => goTo(Number(dot.dataset.projectDot))));
     window.addEventListener('resize', renderCarousel);
 
     projectsCarousel.addEventListener('keydown', (event) => {
@@ -128,19 +172,40 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     projectsCarousel.setAttribute('tabindex', '0');
 
-    // Touch swipe on mobile.
-    let touchStartX = null;
-    projectsCarousel.addEventListener('touchstart', (event) => {
-      touchStartX = event.changedTouches[0].clientX;
-    }, { passive: true });
-    projectsCarousel.addEventListener('touchend', (event) => {
-      if (touchStartX === null) return;
-      const dx = event.changedTouches[0].clientX - touchStartX;
-      touchStartX = null;
-      if (Math.abs(dx) > 45) goTo(index + (dx < 0 ? 1 : -1));
-    }, { passive: true });
+    let pointerStartX = null;
+    let pointerActive = false;
+    projectsCarousel.addEventListener('pointerdown', (event) => {
+      if (event.pointerType === 'mouse' && event.button !== 0) return;
+      pointerStartX = event.clientX;
+      pointerActive = true;
+      projectsCarousel.setPointerCapture?.(event.pointerId);
+    });
+    projectsCarousel.addEventListener('pointerup', (event) => {
+      if (!pointerActive || pointerStartX === null) return;
+      const dx = event.clientX - pointerStartX;
+      pointerStartX = null;
+      pointerActive = false;
+      if (Math.abs(dx) > 50) goTo(index + (dx < 0 ? 1 : -1));
+    });
+    projectsCarousel.addEventListener('pointercancel', () => { pointerStartX = null; pointerActive = false; });
 
+    // Gentle auto-advance only while the user is idle and when the section is visible.
+    let autoTimer = null;
+    const stopAuto = () => { if (autoTimer) window.clearInterval(autoTimer); autoTimer = null; };
+    const startAuto = () => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      stopAuto();
+      autoTimer = window.setInterval(() => {
+        if (document.hidden) return;
+        goTo(index === slides.length - 1 ? 0 : index + 1);
+      }, 7000);
+    };
+    projectsCarousel.addEventListener('mouseenter', stopAuto);
+    projectsCarousel.addEventListener('mouseleave', startAuto);
+    projectsCarousel.addEventListener('focusin', stopAuto);
+    projectsCarousel.addEventListener('focusout', startAuto);
     renderCarousel();
+    startAuto();
   }
 
   /* ---- Optional contact form -> redirects to WhatsApp with prefilled context ---- */

@@ -21,6 +21,9 @@
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+<a class="skip-link" href="#conteudo-principal">Pular para o conteúdo</a>
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"><span></span></div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 
 <!-- ============ NAVBAR ============ -->
 <header class="navbar" id="navbar">
@@ -39,7 +42,7 @@
     </nav>
 
     <div class="navbar__cta">
-      <a href="#" data-whatsapp class="btn btn-primary">
+      <a href="#" data-whatsapp class="btn btn-primary magnetic">
         <span>Falar comigo</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
@@ -64,6 +67,7 @@
 
   <!-- ============ HERO ============ -->
   <section class="hero" id="topo">
+    <div class="hero__grid-decoration" aria-hidden="true"></div>
     <div class="container hero__grid">
       <div class="hero__content" data-reveal>
         <span class="eyebrow">Desenvolvimento Web • Design • Experiências Digitais</span>
@@ -71,11 +75,11 @@
         <p class="hero__sub body-lg">Crio sites institucionais, landing pages e experiências digitais personalizadas para empresas e profissionais que desejam fortalecer sua marca, comunicar seu valor com mais clareza e construir uma presença profissional na internet.</p>
 
         <div class="hero__actions">
-          <a href="#" data-whatsapp data-whatsapp-message="Olá, Victor! Quero criar meu site e gostaria de entender como funciona." class="btn btn-primary">
+          <a href="#" data-whatsapp data-whatsapp-message="Olá, Victor! Quero criar meu site e gostaria de entender como funciona." class="btn btn-primary magnetic">
             Quero criar meu site
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
-          <a href="#projetos" class="btn btn-secondary">Ver projetos</a>
+          <a href="#projetos" class="btn btn-secondary magnetic">Ver projetos</a>
         </div>
 
         <div class="hero__micro small">
@@ -211,7 +215,7 @@
               <div class="project-card__visual">
                 <div class="project-browser" aria-hidden="true">
                   <div class="project-browser__bar"><span></span><span></span><span></span><small>projeto publicado</small></div>
-                  <div class="project-browser__screen"><img src="assets/images/projects/marcelo-neto-advocacia.webp" alt="Captura de tela do site Marcelo Neto Advocacia" loading="lazy" class="project-visual-img"></div>
+                  <div class="project-browser__screen"><img src="assets/images/projects/marcelo-cover-standard.webp" alt="Captura de tela do site Marcelo Neto Advocacia" loading="lazy" class="project-visual-img" decoding="async"></div>
                 </div>
                 <span class="project-card__featured">Projeto em destaque</span>
               </div>
@@ -222,8 +226,8 @@
                 <p class="small project-card__support">A experiência organiza os principais benefícios do INSS e conduz o visitante até uma análise previdenciária gratuita e o WhatsApp.</p>
                 <div class="project-card__focus"><span class="focus-chip">Credibilidade</span><span class="focus-chip">Geração de leads</span><span class="focus-chip">WhatsApp</span><span class="focus-chip">Responsivo</span></div>
                 <div class="project-card__footer">
-                  <a href="https://advmarceloneto.vercel.app/" target="_blank" rel="noopener" class="project-card__link">Ver projeto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
-                  <a href="marcelo-neto-advocacia.html" class="project-card__case">Ver case completo →</a>
+                  <a href="https://advmarceloneto-site.vercel.app/" target="_blank" rel="noopener" class="project-card__link magnetic">Ver projeto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+                  <a href="marcelo-neto-advocacia.html" class="project-card__case magnetic">Ver case completo →</a>
                 </div>
               </div>
             </article>
@@ -232,7 +236,7 @@
               <div class="project-card__visual">
                 <div class="project-browser" aria-hidden="true">
                   <div class="project-browser__bar"><span></span><span></span><span></span><small>projeto publicado</small></div>
-                  <div class="project-browser__screen"><img src="assets/images/projects/vanessa-cover.webp" alt="Apresentação visual do site Dra. Vanessa Antunes" loading="lazy" class="project-visual-img"></div>
+                  <div class="project-browser__screen"><img src="assets/images/projects/vanessa-cover-standard.webp" alt="Apresentação visual do site Dra. Vanessa Antunes" loading="lazy" class="project-visual-img" decoding="async"></div>
                 </div>
                 
               </div>
@@ -243,8 +247,8 @@
                 <p class="small project-card__support">Inclui páginas-guia, FAQ, conteúdos orientativos e chamadas estratégicas para atendimento pelo WhatsApp.</p>
                 <div class="project-card__focus"><span class="focus-chip">Autoridade</span><span class="focus-chip">SEO local</span><span class="focus-chip">Conteúdo</span><span class="focus-chip">Conversão</span></div>
                 <div class="project-card__footer">
-                  <a href="https://vanessaantunes.vercel.app/" target="_blank" rel="noopener" class="project-card__link">Ver projeto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
-                  <a href="vanessa-antunes.html" class="project-card__case">Ver case completo →</a>
+                  <a href="https://vanessaantunes.vercel.app/" target="_blank" rel="noopener" class="project-card__link magnetic">Ver projeto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+                  <a href="vanessa-antunes.html" class="project-card__case magnetic">Ver case completo →</a>
                 </div>
               </div>
             </article>
@@ -253,7 +257,7 @@
               <div class="project-card__visual">
                 <div class="project-browser" aria-hidden="true">
                   <div class="project-browser__bar"><span></span><span></span><span></span><small>projeto publicado</small></div>
-                  <div class="project-browser__screen"><img src="assets/images/projects/vitoria-cover.webp" alt="Apresentação visual do site Vitória Pamplona Nail Designer" loading="lazy" class="project-visual-img"></div>
+                  <div class="project-browser__screen"><img src="assets/images/projects/vitoria-cover-standard.webp" alt="Apresentação visual do site Vitória Pamplona Nail Designer" loading="lazy" class="project-visual-img" decoding="async"></div>
                 </div>
                 
               </div>
@@ -264,8 +268,8 @@
                 <p class="small project-card__support">A página combina portfólio visual, serviços, localização e CTAs diretos para o WhatsApp e Instagram.</p>
                 <div class="project-card__focus"><span class="focus-chip">Identidade visual</span><span class="focus-chip">Agendamento</span><span class="focus-chip">Mobile first</span><span class="focus-chip">Instagram</span></div>
                 <div class="project-card__footer">
-                  <a href="https://vitoriapamplona.com.br/" target="_blank" rel="noopener" class="project-card__link">Ver projeto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
-                  <a href="vitoria-pamplona.html" class="project-card__case">Ver case completo →</a>
+                  <a href="https://www.vitoriapamplona.com.br/" target="_blank" rel="noopener" class="project-card__link magnetic">Ver projeto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+                  <a href="vitoria-pamplona.html" class="project-card__case magnetic">Ver case completo →</a>
                 </div>
               </div>
             </article>
@@ -274,7 +278,7 @@
               <div class="project-card__visual">
                 <div class="project-browser" aria-hidden="true">
                   <div class="project-browser__bar"><span></span><span></span><span></span><small>projeto publicado</small></div>
-                  <div class="project-browser__screen"><img src="assets/images/projects/odontopp.webp" alt="Captura de tela do site Odontopp Clínica Odontológica" loading="lazy" class="project-visual-img"></div>
+                  <div class="project-browser__screen"><img src="assets/images/projects/odontopp-cover-standard.webp" alt="Captura de tela do site Odontopp Clínica Odontológica" loading="lazy" class="project-visual-img" decoding="async"></div>
                 </div>
                 
               </div>
@@ -285,8 +289,8 @@
                 <p class="small project-card__support">Estrutura com tratamentos, diferenciais, localização e CTA de agendamento em destaque.</p>
                 <div class="project-card__focus"><span class="focus-chip">Presença digital</span><span class="focus-chip">Agendamento</span><span class="focus-chip">Identidade clínica</span></div>
                 <div class="project-card__footer">
-                  <a href="https://odontopp.vercel.app/" target="_blank" rel="noopener" class="project-card__link">Ver projeto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
-                  <a href="odontopp.html" class="project-card__case">Ver case completo →</a>
+                  <a href="https://odontopp.vercel.app/" target="_blank" rel="noopener" class="project-card__link magnetic">Ver projeto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+                  <a href="odontopp.html" class="project-card__case magnetic">Ver case completo →</a>
                 </div>
               </div>
             </article>
@@ -295,7 +299,7 @@
               <div class="project-card__visual">
                 <div class="project-browser" aria-hidden="true">
                   <div class="project-browser__bar"><span></span><span></span><span></span><small>projeto publicado</small></div>
-                  <div class="project-browser__screen"><img src="assets/images/projects/cp-volei.webp" alt="Captura de tela do site Escola CP Vôlei" loading="lazy" class="project-visual-img"></div>
+                  <div class="project-browser__screen"><img src="assets/images/projects/cpvolei-cover-standard.webp" alt="Captura de tela do site Escola CP Vôlei" loading="lazy" class="project-visual-img" decoding="async"></div>
                 </div>
                 
               </div>
@@ -306,8 +310,8 @@
                 <p class="small project-card__support">Identidade visual forte, CTAs distribuídos pela página e contato direto via WhatsApp.</p>
                 <div class="project-card__focus"><span class="focus-chip">Captação de alunos</span><span class="focus-chip">Aula experimental</span><span class="focus-chip">WhatsApp</span></div>
                 <div class="project-card__footer">
-                  <a href="https://cpvolei.vercel.app/" target="_blank" rel="noopener" class="project-card__link">Ver projeto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
-                  <a href="cp-volei.html" class="project-card__case">Ver case completo →</a>
+                  <a href="https://cpvolei.vercel.app/" target="_blank" rel="noopener" class="project-card__link magnetic">Ver projeto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+                  <a href="cp-volei.html" class="project-card__case magnetic">Ver case completo →</a>
                 </div>
               </div>
             </article>
@@ -315,9 +319,16 @@
           </div>
         </div>
         <div class="projects-carousel__controls" aria-label="Controles de projetos">
-          <button type="button" class="carousel-control" data-project-prev aria-label="Projeto anterior">←</button>
-          <div class="projects-carousel__status"><span data-project-current>01</span><span>/</span><span>05</span></div>
-          <button type="button" class="carousel-control" data-project-next aria-label="Próximo projeto">→</button>
+          <button type="button" class="carousel-control magnetic" data-project-prev aria-label="Projeto anterior">←</button>
+          <div class="projects-carousel__status"><span data-project-current>01</span><span class="projects-carousel__divider">/</span><span>05</span></div>
+          <button type="button" class="carousel-control magnetic" data-project-next aria-label="Próximo projeto">→</button>
+        </div>
+        <div class="projects-carousel__dots" aria-label="Selecionar projeto">
+          <button type="button" class="project-dot is-active" data-project-dot="0" aria-label="Projeto 1"></button>
+          <button type="button" class="project-dot" data-project-dot="1" aria-label="Projeto 2"></button>
+          <button type="button" class="project-dot" data-project-dot="2" aria-label="Projeto 3"></button>
+          <button type="button" class="project-dot" data-project-dot="3" aria-label="Projeto 4"></button>
+          <button type="button" class="project-dot" data-project-dot="4" aria-label="Projeto 5"></button>
         </div>
         <div class="projects-carousel__hint small">Arraste para os lados ou use as setas para conhecer os projetos.</div>
       </div>
