@@ -435,10 +435,16 @@ h3, .h3{
 
 /* ---------- Projects ---------- */
 .projects-carousel{ position:relative; }
-.projects-carousel__viewport{ overflow:hidden; border-radius:var(--radius-lg); touch-action:pan-y pinch-zoom; cursor:grab; user-select:none; -webkit-user-select:none; }
-.projects-carousel__viewport.is-dragging{ cursor:grabbing; }
-.projects-carousel__viewport img{ user-select:none; -webkit-user-drag:none; }
-.projects-carousel__track{ display:flex; gap:28px; transition:transform .55s var(--ease); will-change:transform; }
+.projects-carousel__viewport{
+  overflow-x:auto;
+  overflow-y:hidden;
+  border-radius:var(--radius-lg);
+  scroll-snap-type:x mandatory;
+  scrollbar-width:none;
+}
+.projects-carousel__viewport::-webkit-scrollbar{ display:none; }
+.projects-carousel__track{ position:relative; display:flex; gap:28px; }
+.project-card--carousel{ scroll-snap-align:start; }
 .project-card--carousel{ flex:0 0 calc(100% - 72px); min-width:0; display:grid; grid-template-columns:1.02fr 1fr; background:var(--card); border:1px solid var(--border); border-radius:var(--radius-lg); overflow:hidden; transition:border-color .3s var(--ease), transform .3s var(--ease); }
 .project-card--carousel:hover{ border-color:var(--border-active); transform:translateY(-3px); }
 .project-card__visual{ background:linear-gradient(145deg, #0c1119, #101722); display:flex; align-items:center; justify-content:center; border-right:1px solid var(--border); position:relative; overflow:hidden; min-height:390px; padding:30px; }
