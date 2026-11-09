@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+<div class="vx-scroll-progress" aria-hidden="true"></div>
 
 <!-- ============ NAVBAR ============ -->
 <header class="navbar" id="navbar">
@@ -64,14 +65,14 @@
   <!-- ============ HERO ============ -->
   <section class="hero" id="topo">
     <div class="container hero__grid">
-      <div class="hero__content" data-reveal>
+      <div class="hero__content">
         <span class="eyebrow">VX Creative · Estúdio digital</span>
         <h1>Sites sob medida para marcas que querem se destacar.</h1>
         <p class="hero__sub body-lg">Design e desenvolvimento de sites institucionais, landing pages e experiências web para empresas e profissionais.</p>
 
         <div class="hero__actions">
           <a href="https://www.instagram.com/vxcreative_/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-            Quero criar meu site
+            Solicitar orçamento
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
           <a href="#projetos" class="btn btn-secondary">Ver projetos</a>
@@ -84,9 +85,9 @@
 
       </div>
 
-      <div class="hero__visual vx-hero-mark" aria-hidden="true">
+      <div class="hero__visual vx-hero-mark">
         <img src="assets/branding/monograma-vx.svg" alt="" width="240" height="108">
-        <span>DESIGN E DESENVOLVIMENTO WEB</span>
+        <p class="vx-signature" lang="en">Your brand. Our digital vision.</p>
       </div>
     </div>
   </section>
@@ -140,60 +141,54 @@
             </article>
             <article class="project-card project-card--carousel" data-reveal>
               <div class="project-card__visual">
-                <div class="project-browser" aria-hidden="true">
-                  <div class="project-browser__bar"><span></span><span></span><span></span><small>projeto publicado</small></div>
-                  <div class="project-browser__screen"><img src="assets/images/projects/marcelo-cover-standard.webp" alt="Captura de tela do site Marcelo Neto Advocacia" loading="lazy" class="project-visual-img" draggable="false"></div>
+                <div class="vx-project-cover vx-project-cover--marcelo">
+                  <span aria-hidden="true">Marcelo Neto Advocacia</span>
+                  <img src="assets/images/projects/marcelo-neto-novo.jpeg" alt="Retrato profissional de Marcelo Neto" loading="lazy" draggable="false">
                 </div>
-                <span class="project-card__featured">Projeto em destaque</span>
               </div>
               <div class="project-card__body">
                 <div class="project-card__meta"><span class="project-tag project-tag--blue">Website institucional</span><span class="project-tag">Direito Previdenciário</span></div>
                 <h3>Marcelo Neto Advocacia</h3>
                 <p class="project-card__desc body">Nova versão da central digital do advogado Marcelo Neto, com foco em clareza, credibilidade e geração de contatos para atendimento previdenciário.</p>
                 <p class="small project-card__support">A experiência organiza os principais benefícios do INSS e conduz o visitante até uma análise previdenciária gratuita e o WhatsApp.</p>
-                <div class="project-card__focus"><span class="focus-chip">Credibilidade</span><span class="focus-chip">Geração de leads</span><span class="focus-chip">WhatsApp</span><span class="focus-chip">Responsivo</span></div>
                 <div class="project-card__footer">
-                  <a href="https://advmarceloneto-site.vercel.app/" target="_blank" rel="noopener" class="project-card__link">Ver projeto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+                  <a href="https://advmarceloneto-site.vercel.app/" target="_blank" rel="noopener" class="project-card__link">Ver projeto <span aria-hidden="true">↗</span></a>
                 </div>
               </div>
             </article>
 
             <article class="project-card project-card--carousel" data-reveal>
               <div class="project-card__visual">
-                <div class="project-browser" aria-hidden="true">
-                  <div class="project-browser__bar"><span></span><span></span><span></span><small>projeto publicado</small></div>
-                  <div class="project-browser__screen"><img src="assets/images/projects/vanessa-cover-standard.webp" alt="Apresentação visual do site Dra. Vanessa Antunes" loading="lazy" class="project-visual-img" draggable="false"></div>
+                <div class="vx-project-cover vx-project-cover--vanessa">
+                  <span aria-hidden="true">Dra. Vanessa Antunes</span>
+                  <img src="assets/images/projects/vanessa-antunes.jpeg" alt="Retrato profissional de Vanessa Antunes" loading="lazy" draggable="false">
                 </div>
-                
               </div>
               <div class="project-card__body">
                 <div class="project-card__meta"><span class="project-tag project-tag--blue">Website institucional</span><span class="project-tag">Advocacia Previdenciária</span></div>
                 <h3>Dra. Vanessa Antunes</h3>
                 <p class="project-card__desc body">Site profissional para uma advogada previdenciária em Belém/PA, estruturado para explicar benefícios do INSS de forma clara e transformar dúvidas em contatos.</p>
                 <p class="small project-card__support">Inclui páginas-guia, FAQ, conteúdos orientativos e chamadas estratégicas para atendimento pelo WhatsApp.</p>
-                <div class="project-card__focus"><span class="focus-chip">Autoridade</span><span class="focus-chip">SEO local</span><span class="focus-chip">Conteúdo</span><span class="focus-chip">Conversão</span></div>
                 <div class="project-card__footer">
-                  <a href="https://vanessaantunes.vercel.app/" target="_blank" rel="noopener" class="project-card__link">Ver projeto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+                  <a href="https://vanessaantunes.vercel.app/" target="_blank" rel="noopener" class="project-card__link">Ver projeto <span aria-hidden="true">↗</span></a>
                 </div>
               </div>
             </article>
 
             <article class="project-card project-card--carousel" data-reveal>
               <div class="project-card__visual">
-                <div class="project-browser" aria-hidden="true">
-                  <div class="project-browser__bar"><span></span><span></span><span></span><small>projeto publicado</small></div>
-                  <div class="project-browser__screen"><img src="assets/images/projects/vitoria-cover-standard.webp" alt="Apresentação visual do site Vitória Pamplona Nail Designer" loading="lazy" class="project-visual-img" draggable="false"></div>
+                <div class="vx-project-cover vx-project-cover--vitoria">
+                  <span aria-hidden="true">Vitória Pamplona</span>
+                  <img src="assets/images/projects/vitoria-pamplona.jpeg" alt="Retrato profissional de Vitória Pamplona" loading="lazy" draggable="false">
                 </div>
-                
               </div>
               <div class="project-card__body">
                 <div class="project-card__meta"><span class="project-tag project-tag--blue">Landing page</span><span class="project-tag">Beleza • Nail Designer</span></div>
                 <h3>Vitória Pamplona</h3>
                 <p class="project-card__desc body">Presença digital para nail designer em São José/SC, com uma identidade elegante e foco em apresentar serviços e levar novas clientes ao agendamento.</p>
                 <p class="small project-card__support">A página combina portfólio visual, serviços, localização e CTAs diretos para o WhatsApp e Instagram.</p>
-                <div class="project-card__focus"><span class="focus-chip">Identidade visual</span><span class="focus-chip">Agendamento</span><span class="focus-chip">Mobile first</span><span class="focus-chip">Instagram</span></div>
                 <div class="project-card__footer">
-                  <a href="https://www.vitoriapamplona.com.br/" target="_blank" rel="noopener" class="project-card__link">Ver projeto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+                  <a href="https://www.vitoriapamplona.com.br/" target="_blank" rel="noopener" class="project-card__link">Ver projeto <span aria-hidden="true">↗</span></a>
                 </div>
               </div>
             </article>
@@ -202,20 +197,18 @@
 
             <article class="project-card project-card--carousel" data-reveal>
               <div class="project-card__visual">
-                <div class="project-browser" aria-hidden="true">
-                  <div class="project-browser__bar"><span></span><span></span><span></span><small>projeto publicado</small></div>
-                  <div class="project-browser__screen"><img src="assets/images/projects/cpvolei-cover-standard.webp" alt="Captura de tela do site Escola CP Vôlei" loading="lazy" class="project-visual-img" draggable="false"></div>
+                <div class="vx-project-cover vx-project-cover--volei">
+                  <span aria-hidden="true">Escola CP Vôlei</span>
+                  <img src="assets/images/projects/cp-volei-site.webp" alt="Captura do site da Escola CP Vôlei" loading="lazy" draggable="false">
                 </div>
-                
               </div>
               <div class="project-card__body">
                 <div class="project-card__meta"><span class="project-tag project-tag--blue">Website institucional</span><span class="project-tag">Escola Esportiva</span></div>
                 <h3>Escola CP Vôlei</h3>
                 <p class="project-card__desc body">Site para uma escola de vôlei em Belém, com comunicação de alta energia para apresentar as turmas e converter o visitante em uma aula experimental.</p>
                 <p class="small project-card__support">Identidade visual forte, CTAs distribuídos pela página e contato direto via WhatsApp.</p>
-                <div class="project-card__focus"><span class="focus-chip">Captação de alunos</span><span class="focus-chip">Aula experimental</span><span class="focus-chip">WhatsApp</span></div>
                 <div class="project-card__footer">
-                  <a href="https://cpvolei.vercel.app/" target="_blank" rel="noopener" class="project-card__link">Ver projeto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+                  <a href="https://cpvolei.vercel.app/" target="_blank" rel="noopener" class="project-card__link">Ver projeto <span aria-hidden="true">↗</span></a>
                 </div>
               </div>
             </article>
@@ -500,11 +493,11 @@
   <!-- ============ CTA FINAL ============ -->
   <section class="cta-final">
     <div class="container cta-final__inner" data-reveal>
-      <h2>Sua próxima presença digital pode começar aqui.</h2>
-      <p class="body-lg">Se você já tem uma ideia, podemos conversar sobre ela. Se ainda não sabe exatamente o que precisa, também podemos começar pelo problema. Conte o que você deseja construir e vamos entender juntos o melhor caminho para o seu projeto.</p>
+      <h2>Vamos conversar sobre o seu projeto?</h2>
+      <p class="body-lg">Conte o que sua marca precisa e o que você espera do site. A conversa inicial ajuda a definir o formato e o escopo antes do orçamento.</p>
       <div class="cta-final__actions">
         <a href="https://www.instagram.com/vxcreative_/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-          Conversar com a VX Creative
+          Conversar pelo Instagram
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
         </a>
       </div>

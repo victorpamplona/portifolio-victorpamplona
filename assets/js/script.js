@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---- Scroll reveal ---- */
   const revealEls = document.querySelectorAll('[data-reveal]');
-  if ('IntersectionObserver' in window && revealEls.length) {
+  if ('IntersectionObserver' in window && revealEls.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -85,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }, { threshold: 0.14, rootMargin: '0px 0px -40px 0px' });
+    document.documentElement.classList.add('vx-reveal');
     revealEls.forEach((el, i) => {
       el.style.setProperty('--i', i % 6);
       io.observe(el);
