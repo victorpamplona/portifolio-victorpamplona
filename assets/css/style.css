@@ -942,12 +942,12 @@ h3, .h3{
 
   .vx-project-cover img { transition: transform .45s var(--ease); }
   .project-card:focus-within .vx-project-cover img { transform: scale(1.045); }
-  .project-card__link > span { transition: transform .2s var(--ease); }
-  .project-card__link:focus-visible > span { transform: translate(2px, -2px); }
+
+
 
   @media (hover: hover) {
     .project-card:hover .vx-project-cover img { transform: scale(1.045); }
-    .project-card__link:hover > span { transform: translate(2px, -2px); }
+
   }
 
   @supports (animation-timeline: scroll()) {
@@ -1005,4 +1005,36 @@ h3, .h3{
 @keyframes vx-glow {
   0%, 100% { opacity: 0; transform: scale(.88); }
   42% { opacity: .74; transform: scale(1.12); }
+}
+
+
+/* Luz ambiente atrás do conteúdo */
+body {
+  isolation: isolate;
+  --vx-section-surface: rgba(13, 19, 32, .72);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  inset: -16%;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 24% 26%, rgba(45, 102, 237, .24), transparent 43%),
+    radial-gradient(ellipse at 80% 73%, rgba(43, 72, 154, .19), transparent 42%);
+}
+
+.carousel-control {
+  display: grid;
+  place-items: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body::before { animation: vx-ambient-light 19s ease-in-out infinite alternate; }
+}
+
+@keyframes vx-ambient-light {
+  from { transform: translate3d(-5%, -3%, 0) scale(1); }
+  to { transform: translate3d(8%, 6%, 0) scale(1.08); }
 }
