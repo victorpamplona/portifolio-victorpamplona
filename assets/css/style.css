@@ -1038,3 +1038,42 @@ body::before {
   from { transform: translate3d(-5%, -3%, 0) scale(1); }
   to { transform: translate3d(8%, 6%, 0) scale(1.08); }
 }
+
+
+/* Case AS Beauty Center */
+.as-beauty-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
+  margin: clamp(28px, 5vw, 64px) 0 0;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: #e9dfd5;
+  color: #382b24;
+}
+.as-beauty-feature__caption {
+  display: grid;
+  align-content: center;
+  gap: 16px;
+  padding: clamp(24px, 5vw, 72px);
+}
+.as-beauty-feature__caption span {
+  font: 600 .75rem var(--font-display);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.as-beauty-feature__caption p {
+  font: 500 clamp(1.6rem, 4vw, 3.6rem)/1.15 Georgia, serif;
+}
+.as-beauty-feature img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center 24%;
+}
+.as-beauty-cta-copy { max-width: 36rem; margin: 16px auto 0; }
+@media (max-width: 560px) {
+  .as-beauty-feature { grid-template-columns: 1fr; }
+  .as-beauty-feature img { aspect-ratio: 4 / 3; }
+}
