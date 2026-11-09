@@ -8,7 +8,7 @@ const CONFIG = {
   WHATSAPP_MESSAGE: 'Olá, Victor! Conheci seu trabalho pelo site e gostaria de conversar sobre um projeto.',
   // TODO: e-mail e instagram reais de Victor.
   EMAIL: 'victorpamplona6@gmail.com',
-  INSTAGRAM: 'https://instagram.com/vxctt._',
+  INSTAGRAM: 'https://www.instagram.com/vxcreative_/',
 };
 
 function buildWhatsAppLink(customMessage){
