@@ -435,7 +435,7 @@ h3, .h3{
 
 /* ---------- Projects ---------- */
 .projects-carousel{ position:relative; }
-.projects-carousel__viewport{ overflow:hidden; border-radius:var(--radius-lg); touch-action:pan-y; cursor:grab; user-select:none; -webkit-user-select:none; }
+.projects-carousel__viewport{ overflow:hidden; border-radius:var(--radius-lg); touch-action:pan-y pinch-zoom; cursor:grab; user-select:none; -webkit-user-select:none; }
 .projects-carousel__viewport.is-dragging{ cursor:grabbing; }
 .projects-carousel__viewport img{ user-select:none; -webkit-user-drag:none; }
 .projects-carousel__track{ display:flex; gap:28px; transition:transform .55s var(--ease); will-change:transform; }

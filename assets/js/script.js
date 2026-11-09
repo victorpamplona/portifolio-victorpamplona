@@ -107,6 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let dragging = false;
     let pointerId = null;
     let startX = 0;
+    let startY = 0;
     let baseTranslate = 0;
     let didDrag = false;
 
@@ -135,41 +136,55 @@ document.addEventListener('DOMContentLoaded', () => {
     next?.addEventListener('click', () => goTo(index + 1));
     window.addEventListener('resize', () => renderCarousel(false));
 
+    const isHorizontal = (dx, dy) => Math.abs(dx) > Math.abs(dy) * 1.35;
+
     const onPointerDown = (event) => {
-      if (!viewport || !track || slides.length < 2) return;
+      if (!track || slides.length < 2 || pointerId !== null || !event.isPrimary) return;
       if (event.pointerType === 'mouse' && event.button !== 0) return;
-      // Buttons/links should remain ordinary clickable controls.
+      didDrag = false;
       if (event.target.closest('a, button')) return;
 
-      dragging = true;
-      didDrag = false;
       pointerId = event.pointerId;
       startX = event.clientX;
-      baseTranslate = -(index * getStep());
-      track.style.transition = 'none';
-      viewport.classList.add('is-dragging');
-      try { viewport.setPointerCapture(pointerId); } catch (_) {}
+      startY = event.clientY;
     };
 
     const onPointerMove = (event) => {
-      if (!dragging || event.pointerId !== pointerId) return;
+      if (event.pointerId !== pointerId) return;
       const dx = event.clientX - startX;
-      if (Math.abs(dx) > 5) didDrag = true;
-      const step = getStep();
-      const maxTranslate = -((slides.length - 1) * step);
+      const dy = event.clientY - startY;
+
+      if (!dragging) {
+        if (Math.max(Math.abs(dx), Math.abs(dy)) < 10) return;
+        if (!isHorizontal(dx, dy)) {
+          pointerId = null;
+          return;
+        }
+
+        dragging = true;
+        didDrag = true;
+        baseTranslate = -(index * getStep());
+        track.style.transition = 'none';
+        viewport.classList.add('is-dragging');
+        try { viewport.setPointerCapture(pointerId); } catch (_) {}
+      }
+
+      const maxTranslate = -((slides.length - 1) * getStep());
       const translate = Math.max(maxTranslate, Math.min(0, baseTranslate + dx));
       track.style.transform = `translate3d(${translate}px, 0, 0)`;
-      if (didDrag) event.preventDefault();
     };
 
-    const onPointerUp = (event) => {
-      if (!dragging || event.pointerId !== pointerId) return;
-      const dx = event.clientX - startX;
-      dragging = false;
+    const finishGesture = (event) => {
+      if (event.pointerId !== pointerId) return;
       pointerId = null;
-      viewport.classList.remove('is-dragging');
+      if (!dragging) return;
 
-      if (Math.abs(dx) >= 45) {
+      dragging = false;
+      viewport.classList.remove('is-dragging');
+      const dx = event.clientX - startX;
+      const dy = event.clientY - startY;
+
+      if (event.type === 'pointerup' && Math.abs(dx) >= 45 && isHorizontal(dx, dy)) {
         goTo(index + (dx < 0 ? 1 : -1));
       } else {
         renderCarousel(true);
@@ -177,15 +192,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     viewport?.addEventListener('pointerdown', onPointerDown);
-    viewport?.addEventListener('pointermove', onPointerMove, { passive: false });
-    viewport?.addEventListener('pointerup', onPointerUp);
-    viewport?.addEventListener('pointercancel', onPointerUp);
-    viewport?.addEventListener('lostpointercapture', () => {
-      if (!dragging) return;
-      dragging = false;
-      pointerId = null;
-      viewport.classList.remove('is-dragging');
-      renderCarousel(true);
+    viewport?.addEventListener('pointermove', onPointerMove);
+    viewport?.addEventListener('pointerup', finishGesture);
+    viewport?.addEventListener('pointercancel', finishGesture);
+    viewport?.addEventListener('lostpointercapture', finishGesture);
+    viewport?.addEventListener('pointerleave', (event) => {
+      if (!dragging) finishGesture(event);
     });
 
     // Prevent only the synthetic click that can follow a real drag.
