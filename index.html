@@ -86,7 +86,25 @@
       </div>
 
       <div class="hero__visual vx-hero-mark">
-        <img src="assets/branding/monograma-vx.svg" alt="" width="240" height="108">
+        <svg class="vx-hero-symbol" viewBox="0 0 240 108" width="240" height="108" aria-hidden="true" focusable="false">
+          <defs>
+            <clipPath id="vx-hero-outline">
+              <path d="M106 104 191 4h37l-85 100z"/>
+              <path d="M131 4h21l84 100h-37L121 12z"/>
+              <path d="M4 4h37l41 50 42-50h28L82 104z"/>
+            </clipPath>
+            <linearGradient id="vx-hero-sheen">
+              <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+              <stop offset=".5" stop-color="#dceaff" stop-opacity=".82"/>
+              <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <g class="vx-hero-symbol__x"><path fill="#246BFD" d="M106 104 191 4h37l-85 100z"/><path fill="#246BFD" d="M131 4h21l84 100h-37L121 12z"/></g>
+          <g class="vx-hero-symbol__v"><path fill="#F5F7FA" d="M4 4h37l41 50 42-50h28L82 104z"/></g>
+          <g clip-path="url(#vx-hero-outline)">
+            <rect class="vx-hero-symbol__sheen" x="-80" y="0" width="68" height="108" fill="url(#vx-hero-sheen)"/>
+          </g>
+        </svg>
         <p class="vx-signature" lang="en">Your brand. Our digital vision.</p>
       </div>
     </div>

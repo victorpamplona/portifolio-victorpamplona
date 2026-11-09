@@ -843,17 +843,49 @@ h3, .h3{
   font: 500 .95rem var(--font-display);
 }
 .vx-hero-mark {
+  isolation: isolate;
   display: grid;
   justify-items: center;
   align-content: center;
-  gap: 28px;
-  min-height: clamp(200px, 34vw, 430px);
+  gap: clamp(18px, 3vw, 32px);
+  min-height: clamp(220px, 34vw, 430px);
   padding: 36px 20px;
-  border: 1px solid var(--border);
+  overflow: hidden;
+  border: 1px solid #2b3950;
   border-radius: var(--radius-lg);
-  background: var(--bg-secondary);
+  background:
+    radial-gradient(ellipse at 54% 48%, #13264a 0%, transparent 68%),
+    #0b101a;
 }
-.vx-hero-mark img { width: min(76%, 320px); height: auto; }
+.vx-hero-mark::before,
+.vx-hero-mark::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+.vx-hero-mark::before {
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(137, 174, 244, .09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(137, 174, 244, .09) 1px, transparent 1px);
+  background-position: center;
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse, #000 10%, transparent 74%);
+}
+.vx-hero-mark::after {
+  inset: 16%;
+  background: radial-gradient(ellipse, rgba(53, 111, 255, .5), transparent 67%);
+  opacity: 0;
+}
+.vx-hero-symbol {
+  display: block;
+  width: min(78%, 340px);
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 12px 22px rgba(0, 0, 0, .42));
+}
+.vx-hero-symbol__sheen { opacity: 0; }
 .vx-hero-mark .vx-signature {
   color: var(--text-secondary);
   font: 500 clamp(.78rem, 1.35vw, 1rem) var(--font-display);
@@ -894,13 +926,12 @@ h3, .h3{
 
 @media (prefers-reduced-motion: no-preference) {
   .hero__content > *,
-  .vx-hero-mark > * {
+  .vx-hero-mark .vx-signature {
     animation: vx-enter .58s var(--ease) both;
   }
-  .hero__content > :nth-child(2),
-  .vx-hero-mark > :first-child { animation-delay: .07s; }
-  .hero__content > :nth-child(3),
-  .vx-hero-mark > :nth-child(2) { animation-delay: .14s; }
+  .hero__content > :nth-child(2) { animation-delay: .07s; }
+  .hero__content > :nth-child(3) { animation-delay: .14s; }
+  .vx-hero-mark .vx-signature { animation-delay: .68s; }
   .hero__content > :nth-child(n+4) { animation-delay: .21s; }
 
   .vx-project-cover img { transition: transform .45s var(--ease); }
@@ -937,4 +968,35 @@ h3, .h3{
 @keyframes vx-progress {
   from { transform: scaleX(0); }
   to { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .vx-hero-symbol__v {
+    --vx-entry-x: -34px;
+    --vx-entry-y: 12px;
+    animation: vx-assemble .82s var(--ease) .07s both;
+  }
+  .vx-hero-symbol__x {
+    --vx-entry-x: 34px;
+    --vx-entry-y: -12px;
+    animation: vx-assemble .82s var(--ease) .14s both;
+  }
+  .vx-hero-symbol__sheen { animation: vx-sheen .75s ease-in-out .74s; }
+  .vx-hero-mark::after { animation: vx-glow 1s ease-out .5s; }
+}
+
+@keyframes vx-assemble {
+  from { opacity: 0; transform: translate(var(--vx-entry-x), var(--vx-entry-y)); }
+  to { opacity: 1; transform: translate(0, 0); }
+}
+
+@keyframes vx-sheen {
+  0% { opacity: 0; transform: translateX(0) skewX(-17deg); }
+  24%, 76% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(360px) skewX(-17deg); }
+}
+
+@keyframes vx-glow {
+  0%, 100% { opacity: 0; transform: scale(.88); }
+  42% { opacity: .74; transform: scale(1.12); }
 }
