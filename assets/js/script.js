@@ -1,14 +1,12 @@
 /* ==========================================================================
-   CONFIG — Victor Pamplona
+   CONFIG — VX Creative
    Substitua os valores abaixo pelos dados reais antes de publicar.
    ========================================================================== */
 const CONFIG = {
-  // TODO: coloque o número real no formato internacional, sem espaços ou símbolos.
-  WHATSAPP_NUMBER: '5591981302939', // ex: 5591990000000
-  WHATSAPP_MESSAGE: 'Olá, Victor! Conheci seu trabalho pelo site e gostaria de conversar sobre um projeto.',
-  // TODO: e-mail e instagram reais de Victor.
+  WHATSAPP_NUMBER: '5591981601528',
+  WHATSAPP_MESSAGE: 'Olá! Conheci a VX Creative pelo site e gostaria de conversar sobre um projeto.',
   EMAIL: 'victorpamplona6@gmail.com',
-  INSTAGRAM: 'https://instagram.com/vxctt._',
+  INSTAGRAM: 'https://www.instagram.com/vxcreative_/',
 };
 
 function buildWhatsAppLink(customMessage){
@@ -76,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---- Scroll reveal ---- */
   const revealEls = document.querySelectorAll('[data-reveal]');
-  if ('IntersectionObserver' in window && revealEls.length) {
+  if ('IntersectionObserver' in window && revealEls.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -85,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }, { threshold: 0.14, rootMargin: '0px 0px -40px 0px' });
+    document.documentElement.classList.add('vx-reveal');
     revealEls.forEach((el, i) => {
       el.style.setProperty('--i', i % 6);
       io.observe(el);
@@ -97,112 +96,55 @@ document.addEventListener('DOMContentLoaded', () => {
   const projectsCarousel = document.querySelector('[data-projects-carousel]');
   if (projectsCarousel) {
     const viewport = projectsCarousel.querySelector('.projects-carousel__viewport');
-    const track = projectsCarousel.querySelector('.projects-carousel__track');
     const slides = Array.from(projectsCarousel.querySelectorAll('.project-card--carousel'));
     const prev = projectsCarousel.querySelector('[data-project-prev]');
     const next = projectsCarousel.querySelector('[data-project-next]');
     const current = projectsCarousel.querySelector('[data-project-current]');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let index = 0;
-    let dragging = false;
-    let pointerId = null;
-    let startX = 0;
-    let baseTranslate = 0;
-    let didDrag = false;
 
-    const getStep = () => {
-      if (!track || !slides.length) return 0;
-      const gap = parseFloat(getComputedStyle(track).gap) || 0;
-      return slides[0].getBoundingClientRect().width + gap;
-    };
+    const positionFor = (slide) => Math.min(
+      slide.offsetLeft - slides[0].offsetLeft,
+      Math.max(0, viewport.scrollWidth - viewport.clientWidth)
+    );
 
-    const renderCarousel = (animate = true) => {
-      if (!track || !slides.length) return;
-      const step = getStep();
-      track.style.transition = animate ? '' : 'none';
-      track.style.transform = `translate3d(-${index * step}px, 0, 0)`;
+    const syncControls = () => {
+      const left = viewport.scrollLeft;
+      let nearestDistance = Infinity;
+      slides.forEach((slide, slideIndex) => {
+        const distance = Math.abs(positionFor(slide) - left);
+        if (distance < nearestDistance) {
+          index = slideIndex;
+          nearestDistance = distance;
+        }
+      });
       if (current) current.textContent = String(index + 1).padStart(2, '0');
       if (prev) prev.disabled = index === 0;
-      if (next) next.disabled = index === slides.length - 1;
+      if (next) next.disabled = index >= slides.length - 1;
     };
 
     const goTo = (nextIndex) => {
-      index = Math.max(0, Math.min(slides.length - 1, nextIndex));
-      renderCarousel(true);
+      const slide = slides[nextIndex];
+      if (!slide) return;
+      viewport.scrollTo({
+        left: positionFor(slide),
+        behavior: reducedMotion.matches ? 'instant' : 'smooth',
+      });
     };
 
     prev?.addEventListener('click', () => goTo(index - 1));
     next?.addEventListener('click', () => goTo(index + 1));
-    window.addEventListener('resize', () => renderCarousel(false));
+    viewport.addEventListener('scroll', syncControls, { passive: true });
+    window.addEventListener('resize', syncControls);
 
-    const onPointerDown = (event) => {
-      if (!viewport || !track || slides.length < 2) return;
-      if (event.pointerType === 'mouse' && event.button !== 0) return;
-      // Buttons/links should remain ordinary clickable controls.
-      if (event.target.closest('a, button')) return;
-
-      dragging = true;
-      didDrag = false;
-      pointerId = event.pointerId;
-      startX = event.clientX;
-      baseTranslate = -(index * getStep());
-      track.style.transition = 'none';
-      viewport.classList.add('is-dragging');
-      try { viewport.setPointerCapture(pointerId); } catch (_) {}
-    };
-
-    const onPointerMove = (event) => {
-      if (!dragging || event.pointerId !== pointerId) return;
-      const dx = event.clientX - startX;
-      if (Math.abs(dx) > 5) didDrag = true;
-      const step = getStep();
-      const maxTranslate = -((slides.length - 1) * step);
-      const translate = Math.max(maxTranslate, Math.min(0, baseTranslate + dx));
-      track.style.transform = `translate3d(${translate}px, 0, 0)`;
-      if (didDrag) event.preventDefault();
-    };
-
-    const onPointerUp = (event) => {
-      if (!dragging || event.pointerId !== pointerId) return;
-      const dx = event.clientX - startX;
-      dragging = false;
-      pointerId = null;
-      viewport.classList.remove('is-dragging');
-
-      if (Math.abs(dx) >= 45) {
-        goTo(index + (dx < 0 ? 1 : -1));
-      } else {
-        renderCarousel(true);
-      }
-    };
-
-    viewport?.addEventListener('pointerdown', onPointerDown);
-    viewport?.addEventListener('pointermove', onPointerMove, { passive: false });
-    viewport?.addEventListener('pointerup', onPointerUp);
-    viewport?.addEventListener('pointercancel', onPointerUp);
-    viewport?.addEventListener('lostpointercapture', () => {
-      if (!dragging) return;
-      dragging = false;
-      pointerId = null;
-      viewport.classList.remove('is-dragging');
-      renderCarousel(true);
-    });
-
-    // Prevent only the synthetic click that can follow a real drag.
-    viewport?.addEventListener('click', (event) => {
-      if (didDrag) {
-        event.preventDefault();
-        event.stopPropagation();
-        didDrag = false;
-      }
-    }, true);
-
-    // Keyboard navigation remains available when the carousel is focused.
     projectsCarousel.addEventListener('keydown', (event) => {
-      if (event.key === 'ArrowLeft') goTo(index - 1);
-      if (event.key === 'ArrowRight') goTo(index + 1);
+      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+      if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+      event.preventDefault();
+      goTo(index + (event.key === 'ArrowRight' ? 1 : -1));
     });
 
-    renderCarousel(false);
+    syncControls();
   }
 
   /* ---- Optional contact form -> redirects to WhatsApp with prefilled context ---- */
