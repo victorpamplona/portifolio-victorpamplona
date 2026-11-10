@@ -1,12 +1,10 @@
 /* ==========================================================================
-   CONFIG — Victor Pamplona
+   CONFIG — VX Creative
    Substitua os valores abaixo pelos dados reais antes de publicar.
    ========================================================================== */
 const CONFIG = {
-  // TODO: coloque o número real no formato internacional, sem espaços ou símbolos.
-  WHATSAPP_NUMBER: '5591981302939', // ex: 5591990000000
-  WHATSAPP_MESSAGE: 'Olá, Victor! Conheci seu trabalho pelo site e gostaria de conversar sobre um projeto.',
-  // TODO: e-mail e instagram reais de Victor.
+  WHATSAPP_NUMBER: '5591981601528',
+  WHATSAPP_MESSAGE: 'Olá! Conheci a VX Creative pelo site e gostaria de conversar sobre um projeto.',
   EMAIL: 'victorpamplona6@gmail.com',
   INSTAGRAM: 'https://www.instagram.com/vxcreative_/',
 };
