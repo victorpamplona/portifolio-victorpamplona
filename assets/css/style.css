@@ -1316,3 +1316,68 @@ html { scroll-padding-top: 90px; }
 @media (max-width: 1000px) { .vx-faq__layout { grid-template-columns:1fr; gap:36px; } .vx-faq__intro { position:static; } .vx-faq__intro h2 { max-width:700px; } }
 @media (max-width:640px) { html { scroll-padding-top:78px; } .vx-faq .faq-item__q { padding:24px 0; } .vx-faq__num { flex-basis:30px; } .vx-faq .faq-item__a { padding-left:46px; } .vx-faq__intro h2 { font-size:clamp(2.55rem,10vw,4.2rem); } }
 @media (prefers-reduced-motion:reduce) { .navbar__links a::after,.vx-faq__contact,.vx-faq .faq-item__q { transition:none; } }
+
+
+/* ==========================================================================
+   VX CREATIVE — Digital Atmosphere / Motion phase I
+   Lightweight, progressive enhancements: no custom scroll, no animation library.
+   ========================================================================== */
+.hero.vx-atmosphere-host { --vx-light-x:72%; --vx-light-y:44%; isolation:isolate; }
+.hero.vx-atmosphere-host::before {
+  z-index:0; inset:0; top:0; right:0; width:auto; height:auto;
+  background:
+    radial-gradient(ellipse 40% 48% at var(--vx-light-x) var(--vx-light-y),rgba(46,113,238,.18),transparent 78%),
+    radial-gradient(ellipse 57% 74% at 80% 45%,rgba(14,52,121,.24),transparent 76%);
+  opacity:.95;
+  transition:opacity .5s ease;
+}
+.hero.vx-atmosphere-host .hero__grid,
+.hero.vx-atmosphere-host .hero__bottom { position:relative; z-index:1; }
+.hero.vx-atmosphere-host .vx-hero-mark { position:relative; }
+.hero.vx-atmosphere-host .vx-hero-mark::after { pointer-events:none; }
+.vx-projects .project-card__visual::after {
+  content:''; position:absolute; z-index:2; inset:0; pointer-events:none;
+  background:linear-gradient(112deg,transparent 40%,rgba(162,202,255,.08) 52%,transparent 65%);
+  opacity:0; transform:translateX(-14%);
+  transition:opacity .75s ease,transform 1s cubic-bezier(.2,.7,.2,1);
+}
+@media (hover:hover) and (pointer:fine) {
+  .vx-projects .project-card--carousel:hover .project-card__visual::after { opacity:1; transform:translateX(14%); }
+  .vx-projects .project-card--carousel:hover .vx-project-cover img { transform:scale(1.035); }
+}
+.vx-projects .vx-project-cover img { transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
+.vx-projects .project-card__visual.vx-motion-ready { opacity:0; clip-path:inset(0 0 8% 0); transform:translateY(13px); }
+.vx-projects .project-card__visual.vx-motion-ready.vx-motion-visible {
+  opacity:1; clip-path:inset(0 0 0 0); transform:translateY(0);
+}
+.vx-projects .project-card__visual.vx-motion-ready {
+  transition:opacity .85s ease,transform .85s cubic-bezier(.2,.7,.2,1),clip-path 1s cubic-bezier(.2,.7,.2,1);
+}
+.vx-services__heading h2.vx-motion-ready,
+.vx-process__intro h2.vx-motion-ready,
+.vx-about__heading h2.vx-motion-ready,
+.vx-faq__intro h2.vx-motion-ready,
+.vx-final h2.vx-motion-ready {
+  opacity:0; transform:translateY(24px);
+  transition:opacity .85s ease .07s,transform .9s cubic-bezier(.2,.7,.2,1) .07s;
+}
+.vx-services__heading h2.vx-motion-visible,
+.vx-process__intro h2.vx-motion-visible,
+.vx-about__heading h2.vx-motion-visible,
+.vx-faq__intro h2.vx-motion-visible,
+.vx-final h2.vx-motion-visible { opacity:1; transform:translateY(0); }
+@media (hover:none),(pointer:coarse) {
+  .hero.vx-atmosphere-host::before {
+    background:radial-gradient(ellipse 50% 52% at 73% 43%,rgba(46,113,238,.16),transparent 78%);
+  }
+}
+@media (prefers-reduced-motion:reduce) {
+  .hero.vx-atmosphere-host::before { transition:none; }
+  .vx-projects .project-card__visual::after { display:none; }
+  .vx-projects .vx-project-cover img { transition:none; transform:none !important; }
+  .vx-projects .project-card__visual.vx-motion-ready,
+  .vx-services__heading h2.vx-motion-ready,.vx-process__intro h2.vx-motion-ready,
+  .vx-about__heading h2.vx-motion-ready,.vx-faq__intro h2.vx-motion-ready,.vx-final h2.vx-motion-ready {
+    opacity:1; transform:none; clip-path:none; transition:none;
+  }
+}
