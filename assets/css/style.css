@@ -1381,3 +1381,98 @@ html { scroll-padding-top: 90px; }
     opacity:1; transform:none; clip-path:none; transition:none;
   }
 }
+
+
+/* ==========================================================================
+  VX CREATIVE — Digital Atmosphere / final motion polish
+  Non-blocking: native scrolling, real content visible without JavaScript.
+  ========================================================================== */
+/* Choreograph the existing VX mark without adding a blocking loader. */
+@media (prefers-reduced-motion:no-preference) {
+  .hero.vx-atmosphere-host .vx-hero-symbol__v {
+    animation: vx-signature-enter 1.06s cubic-bezier(.2,.75,.2,1) .08s both;
+    transform-origin:center;
+  }
+  .hero.vx-atmosphere-host .vx-hero-symbol__x {
+    animation: vx-signature-enter-x 1.06s cubic-bezier(.2,.75,.2,1) .16s both;
+    transform-origin:center;
+  }
+  .hero.vx-atmosphere-host .vx-hero-symbol__sheen {
+    animation: vx-sheen 1.08s ease-in-out .94s both;
+  }
+  .hero.vx-atmosphere-host .vx-hero-mark::after {
+    animation: vx-glow 1.28s ease-out .84s both;
+  }
+  .hero.vx-atmosphere-host .vx-hero-symbol {
+    animation: vx-signature-settle 1.8s cubic-bezier(.2,.75,.2,1) .12s both;
+  }
+  .hero.vx-atmosphere-host .hero__content > * {
+    animation-duration:.72s;
+    animation-timing-function:cubic-bezier(.2,.75,.2,1);
+  }
+  .hero.vx-atmosphere-host .hero__content > :nth-child(2) { animation-delay:.16s; }
+  .hero.vx-atmosphere-host .hero__content > :nth-child(3) { animation-delay:.26s; }
+  .hero.vx-atmosphere-host .hero__content > :nth-child(n+4) { animation-delay:.37s; }
+}
+@keyframes vx-signature-enter {
+  from { opacity:0; transform:translate(-35px,13px) scale(.985); }
+  to { opacity:1; transform:translate(0,0) scale(1); }
+}
+@keyframes vx-signature-enter-x {
+  from { opacity:0; transform:translate(36px,-12px) scale(.985); }
+  to { opacity:1; transform:translate(0,0) scale(1); }
+}
+@keyframes vx-signature-settle {
+  from { filter:drop-shadow(0 0 0 rgba(33,105,244,0)); }
+  65% { filter:drop-shadow(0 0 30px rgba(40,117,255,.39)); }
+  to { filter:drop-shadow(0 12px 27px rgba(25,92,222,.20)); }
+}
+/* Deliberately restrained magnetic CTA feedback (no layout reflow). */
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  .vx-magnetic {
+    --vx-magnet-x:0px; --vx-magnet-y:0px;
+    translate:var(--vx-magnet-x) var(--vx-magnet-y);
+    transition: translate .22s cubic-bezier(.2,.75,.2,1),border-color .25s ease,background-color .25s ease,box-shadow .3s ease;
+  }
+  .vx-magnetic:hover,
+  .vx-magnetic:focus-visible {
+    box-shadow:0 14px 40px rgba(30,103,248,.18),inset 0 1px 0 rgba(255,255,255,.10);
+  }
+  .vx-magnetic svg { transition:translate .25s ease; }
+  .vx-magnetic:hover svg { translate:2px -1px; }
+}
+/* Chapter boundaries change blue intensity rather than replacing native scroll. */
+#projetos,#servicos,#processo,#sobre,#faq,#contato { isolation:isolate; }
+#projetos::after,#servicos::after,#processo::after,#sobre::after,#faq::after {
+  content:''; position:absolute; z-index:-1; pointer-events:none;
+  width:min(850px,80vw); height:420px; top:0; right:-25%;
+  background:radial-gradient(ellipse,rgba(34,93,203,.095),transparent 67%);
+}
+#processo::after,#faq::after { right:auto; left:-23%; background:radial-gradient(ellipse,rgba(54,108,198,.08),transparent 69%); }
+#projetos .eyebrow,#servicos .eyebrow,#processo .eyebrow,#sobre .eyebrow,#faq .eyebrow,#contato .eyebrow { position:relative; }
+@media (prefers-reduced-motion:no-preference) {
+  #projetos.vx-chapter-ready .eyebrow::before,
+  #servicos.vx-chapter-ready .eyebrow::before,
+  #processo.vx-chapter-ready .eyebrow::before,
+  #sobre.vx-chapter-ready .eyebrow::before,
+  #faq.vx-chapter-ready .eyebrow::before,
+  #contato.vx-chapter-ready .eyebrow::before {
+    transform-origin:left; transform:scaleX(.2); opacity:.28;
+    transition:transform 1.1s cubic-bezier(.2,.75,.2,1),opacity .75s ease;
+  }
+  #projetos.vx-chapter-entered .eyebrow::before,
+  #servicos.vx-chapter-entered .eyebrow::before,
+  #processo.vx-chapter-entered .eyebrow::before,
+  #sobre.vx-chapter-entered .eyebrow::before,
+  #faq.vx-chapter-entered .eyebrow::before,
+  #contato.vx-chapter-entered .eyebrow::before { transform:scaleX(1); opacity:1; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .hero.vx-atmosphere-host .vx-hero-symbol,
+  .hero.vx-atmosphere-host .vx-hero-symbol__v,
+  .hero.vx-atmosphere-host .vx-hero-symbol__x,
+  .hero.vx-atmosphere-host .vx-hero-symbol__sheen {
+    animation:none; filter:none;
+  }
+  .vx-magnetic { translate:none !important; }
+}
