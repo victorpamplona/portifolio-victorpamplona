@@ -68,12 +68,15 @@ document.addEventListener('DOMContentLoaded', () => {
   if (burger && mobileMenu) {
     burger.addEventListener('click', () => {
       const isOpen = mobileMenu.classList.toggle('is-open');
+      mobileMenu.inert = !isOpen;
       burger.setAttribute('aria-expanded', String(isOpen));
       burger.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
       document.body.style.overflow = isOpen ? 'hidden' : '';
+      if (isOpen) mobileMenu.querySelector('a')?.focus();
     });
     const closeMobileMenu = () => {
       mobileMenu.classList.remove('is-open');
+      mobileMenu.inert = true;
       burger.setAttribute('aria-expanded', 'false');
       burger.setAttribute('aria-label', 'Abrir menu');
       document.body.style.overflow = '';
