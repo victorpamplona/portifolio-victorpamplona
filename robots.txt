@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://victorpamplona.vercel.app/sitemap.xml
+Sitemap: https://vxcreative.vercel.app/sitemap.xml
