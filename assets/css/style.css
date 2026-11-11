@@ -1476,3 +1476,28 @@ html { scroll-padding-top: 90px; }
   }
   .vx-magnetic { translate:none !important; }
 }
+
+
+/* Accessibility / performance audit: keyboard skip link and stable imagery */
+.vx-skip-link {
+  position:fixed;
+  z-index:2000;
+  top:12px;
+  left:12px;
+  max-width:calc(100vw - 24px);
+  padding:13px 18px;
+  border-radius:6px;
+  background:#eff5ff;
+  color:#08111e;
+  font:600 .9rem/1.4 var(--font-body);
+  text-decoration:none;
+  box-shadow:0 12px 32px rgba(0,0,0,.32);
+  transform:translateY(-180%);
+}
+.vx-skip-link:focus-visible { transform:translateY(0); outline:3px solid #75a7f2; }
+.project-card__visual img { aspect-ratio:4 / 5; }
+.vx-about__photo img { aspect-ratio:4 / 5; }
+@media (prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto; }
+  .vx-skip-link { transition:none; }
+}
