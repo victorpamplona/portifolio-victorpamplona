@@ -108,6 +108,68 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  /* ---- VX atmospheric light: desktop pointer only, no extra canvas or libraries ---- */
+  const vxHero = document.querySelector('.vx-atmosphere-host');
+  const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+  if (vxHero && !motionPreference.matches && finePointer.matches) {
+    let pointerFrame = 0;
+    let nextX = 72, nextY = 44;
+    let isVisible = true;
+    const paintLight = () => {
+      pointerFrame = 0;
+      if (!isVisible) return;
+      vxHero.style.setProperty('--vx-light-x', nextX.toFixed(1) + '%');
+      vxHero.style.setProperty('--vx-light-y', nextY.toFixed(1) + '%');
+    };
+    const scheduleLight = () => {
+      if (!pointerFrame && isVisible) pointerFrame = window.requestAnimationFrame(paintLight);
+    };
+    vxHero.addEventListener('pointermove', (event) => {
+      const bounds = vxHero.getBoundingClientRect();
+      if (!bounds.width || !bounds.height) return;
+      nextX = Math.max(0, Math.min(100, ((event.clientX - bounds.left) / bounds.width) * 100));
+      nextY = Math.max(0, Math.min(100, ((event.clientY - bounds.top) / bounds.height) * 100));
+      scheduleLight();
+    }, { passive: true });
+    vxHero.addEventListener('pointerleave', () => {
+      nextX = 72; nextY = 44;
+      scheduleLight();
+    });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(entries => {
+        isVisible = entries[0].isIntersecting;
+        if (!isVisible && pointerFrame) {
+          window.cancelAnimationFrame(pointerFrame);
+          pointerFrame = 0;
+        }
+      }, { threshold: 0 }).observe(vxHero);
+    }
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden && pointerFrame) {
+        window.cancelAnimationFrame(pointerFrame);
+        pointerFrame = 0;
+      }
+    });
+  }
+
+  /* ---- Reveal headings and imagery once as they enter the viewport ---- */
+  const vxMotionTargets = document.querySelectorAll('.vx-projects .project-card__visual, .vx-services__heading h2, .vx-process__intro h2, .vx-about__heading h2, .vx-faq__intro h2, .vx-final h2');
+  if (vxMotionTargets.length && !motionPreference.matches && 'IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('vx-motion-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .12, rootMargin: '0px 0px -12px 0px' });
+    vxMotionTargets.forEach(target => {
+      target.classList.add('vx-motion-ready');
+      revealObserver.observe(target);
+    });
+  }
+
   /* ---- Scroll reveal ---- */
   const revealEls = document.querySelectorAll('[data-reveal]');
   if ('IntersectionObserver' in window && revealEls.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
