@@ -170,6 +170,51 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ---- Magnetic microinteractions: fine pointers only, never hijack click ---- */
+  if (!motionPreference.matches && finePointer.matches) {
+    const magnets = document.querySelectorAll('.hero__actions .btn, .navbar__cta .btn, .vx-process__footer .btn, .vx-final__actions .btn');
+    magnets.forEach(button => {
+      let raf = 0;
+      let x = 0, y = 0;
+      const update = () => {
+        raf = 0;
+        button.style.setProperty('--vx-magnet-x', x.toFixed(1) + 'px');
+        button.style.setProperty('--vx-magnet-y', y.toFixed(1) + 'px');
+      };
+      const schedule = () => { if (!raf) raf = window.requestAnimationFrame(update); };
+      button.classList.add('vx-magnetic');
+      button.addEventListener('pointermove', event => {
+        const rect = button.getBoundingClientRect();
+        x = Math.max(-5, Math.min(5, (event.clientX - rect.left - rect.width / 2) * .09));
+        y = Math.max(-5, Math.min(5, (event.clientY - rect.top - rect.height / 2) * .11));
+        schedule();
+      }, { passive:true });
+      const reset = () => { x=0; y=0; schedule(); };
+      button.addEventListener('pointerleave', reset);
+      button.addEventListener('blur', reset);
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden && raf) { window.cancelAnimationFrame(raf); raf=0; reset(); }
+      });
+    });
+  }
+
+  /* ---- Atmospheric chapter transitions: observer adds only non-blocking accents ---- */
+  const chapterSections = document.querySelectorAll('#projetos, #servicos, #processo, #sobre, #faq, #contato');
+  if ('IntersectionObserver' in window && chapterSections.length && !motionPreference.matches) {
+    const chapterObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('vx-chapter-entered');
+          chapterObserver.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin:'0px 0px -13% 0px', threshold: .08 });
+    chapterSections.forEach(section => {
+      section.classList.add('vx-chapter-ready');
+      chapterObserver.observe(section);
+    });
+  }
+
   /* ---- Scroll reveal ---- */
   const revealEls = document.querySelectorAll('[data-reveal]');
   if ('IntersectionObserver' in window && revealEls.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
