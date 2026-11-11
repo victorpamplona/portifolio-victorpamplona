@@ -1180,3 +1180,48 @@ body::before {
 @media (prefers-reduced-motion: reduce) {
   .hero .vx-hero-symbol, .vx-projects .project-card--carousel { transition:none; animation:none; }
 }
+
+
+/* Editorial phase II — services and process */
+.vx-services { background: #090e18; border-top: 1px solid rgba(133,165,222,.13); }
+.vx-services__heading, .vx-process__intro { display:grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .65fr); gap:clamp(24px,6vw,110px); align-items:end; margin-bottom:clamp(48px,7vw,94px); }
+.vx-services__heading h2, .vx-process__intro h2 { font-size:clamp(2.7rem,5.3vw,5.7rem); line-height:1.08; letter-spacing:-.065em; max-width:850px; }
+.vx-services__heading h2 em, .vx-process__intro h2 em { font-style:normal; color:#80aafb; }
+.vx-services__heading p, .vx-process__intro p { font-size:clamp(1rem,1.35vw,1.2rem); line-height:1.7; color:var(--text-secondary); }
+.vx-services__list { border-top:1px solid rgba(180,202,238,.25); }
+.vx-service { display:grid; grid-template-columns:70px minmax(0,1fr) auto; align-items:center; gap:clamp(16px,3vw,44px); border-bottom:1px solid rgba(180,202,238,.19); padding:clamp(30px,4vw,52px) 0; transition:padding .3s ease,background .3s ease; }
+.vx-service__index { font:500 .76rem var(--font-display); letter-spacing:.14em; color:#83aef5; align-self:start; padding-top:9px; }
+.vx-service__copy h3 { font-size:clamp(1.65rem,3vw,3.3rem); line-height:1.12; letter-spacing:-.055em; margin:0 0 14px; }
+.vx-service__copy p { max-width:620px; line-height:1.65; color:var(--text-secondary); }
+.vx-service__action { display:inline-flex; align-items:center; gap:18px; color:var(--title); text-decoration:none; font-size:.85rem; font-weight:600; white-space:nowrap; border-bottom:1px solid rgba(130,171,237,.42); padding:10px 0; transition:color .2s ease,border-color .2s ease; }
+.vx-service__action svg { color:#85b4ff; transition:transform .2s ease; }
+.vx-service__action:hover,.vx-service__action:focus-visible { color:#91bbff; border-color:#91bbff; }
+.vx-service__action:hover svg,.vx-service__action:focus-visible svg { transform:translate(3px,-3px); }
+.vx-process { border-top:1px solid rgba(133,165,222,.13); background:radial-gradient(ellipse at 90% 10%,rgba(42,93,188,.10),transparent 54%),#0b111c; }
+.vx-process__intro { margin-bottom:clamp(40px,5vw,72px); }
+.vx-process__steps { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); border-top:1px solid rgba(180,202,238,.23); }
+.vx-process__step { padding:clamp(28px,3vw,48px) clamp(18px,2.7vw,40px) 40px 0; min-width:0; }
+.vx-process__step:not(:first-child) { border-left:1px solid rgba(180,202,238,.19); padding-left:clamp(18px,2.7vw,40px); }
+.vx-process__step > span { display:block; color:#84aef2; letter-spacing:.13em; text-transform:uppercase; font:500 .7rem var(--font-display); margin-bottom:clamp(50px,5vw,84px); }
+.vx-process__step h3 { font-size:clamp(1.35rem,2.1vw,2.25rem); line-height:1.13; letter-spacing:-.04em; margin-bottom:18px; }
+.vx-process__step p { color:var(--text-secondary); line-height:1.7; font-size:.94rem; }
+.vx-process__footer { display:flex; justify-content:space-between; align-items:center; gap:24px; border-top:1px solid rgba(180,202,238,.22); padding-top:32px; margin-top:clamp(20px,4vw,54px); }
+.vx-process__footer > span { font:500 clamp(1.1rem,2vw,1.6rem) var(--font-display); }
+@media (max-width:900px) {
+  .vx-services__heading,.vx-process__intro { grid-template-columns:1fr; gap:22px; }
+  .vx-services__heading p,.vx-process__intro p { max-width:620px; }
+  .vx-process__steps { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .vx-process__step:nth-child(3) { border-left:0; }
+  .vx-process__step:nth-child(n+3) { border-top:1px solid rgba(180,202,238,.19); }
+}
+@media (max-width:640px) {
+  .vx-service { grid-template-columns:42px minmax(0,1fr); gap:10px 13px; align-items:start; padding:27px 0; }
+  .vx-service__copy h3 { font-size:clamp(1.65rem,7vw,2.2rem); }
+  .vx-service__action { grid-column:2; justify-self:start; margin-top:8px; }
+  .vx-process__steps { grid-template-columns:1fr; }
+  .vx-process__step,.vx-process__step:not(:first-child) { border-left:0; border-top:1px solid rgba(180,202,238,.19); padding:24px 0 28px; }
+  .vx-process__step:first-child { border-top:0; }
+  .vx-process__step > span { margin-bottom:23px; }
+  .vx-process__footer { align-items:flex-start; flex-direction:column; }
+}
+@media (prefers-reduced-motion:reduce) { .vx-service,.vx-service__action svg { transition:none; } }
