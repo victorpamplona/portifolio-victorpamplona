@@ -1501,3 +1501,7 @@ html { scroll-padding-top: 90px; }
   html { scroll-behavior:auto; }
   .vx-skip-link { transition:none; }
 }
+
+/* Audit: ensure hidden mobile navigation is also hidden from keyboard focus */
+.mobile-menu { visibility:hidden; }
+.mobile-menu.is-open { visibility:visible; }
