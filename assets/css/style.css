@@ -1282,3 +1282,37 @@ body::before {
   .vx-final__signature { font-size:.63rem; }
 }
 @media (prefers-reduced-motion:reduce) { .vx-about__link { transition:none; } }
+
+
+/* Editorial phase IV — navigation polish and accessible FAQ */
+html { scroll-padding-top: 90px; }
+.navbar__links { gap:clamp(19px,2.2vw,36px); }
+.navbar__links a { font-size:.79rem; letter-spacing:.015em; padding:12px 0; }
+.navbar__links a::after { content:''; display:block; position:absolute; height:1px; bottom:5px; left:0; right:100%; background:#8bb9ff; transition:right .25s ease; }
+.navbar__links a:hover::after,.navbar__links a:focus-visible::after,.navbar__links a.is-active::after { right:0; }
+.navbar__links a.is-active { color:#f5f8ff; }
+.navbar.is-scrolled { background:rgba(7,12,22,.87); border-bottom-color:rgba(125,166,236,.19); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); }
+.navbar__logo img { filter:drop-shadow(0 0 14px rgba(65,131,249,.18)); }
+.vx-faq { background:#0b111c; border-top:1px solid rgba(137,169,224,.16); }
+.vx-faq__layout { display:grid; grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr); gap:clamp(38px,7vw,118px); align-items:start; }
+.vx-faq__intro { position:sticky; top:116px; }
+.vx-faq__intro h2 { font-size:clamp(2.7rem,4.65vw,5.1rem); line-height:1.06; letter-spacing:-.065em; max-width:590px; margin-bottom:28px; }
+.vx-faq__intro h2 em { font-style:normal; color:#84b2fa; }
+.vx-faq__intro p { color:var(--text-secondary); max-width:430px; font-size:1.02rem; line-height:1.8; }
+.vx-faq__contact { display:inline-flex; align-items:center; gap:24px; margin-top:30px; color:#e7f0ff; font:600 .85rem var(--font-display); text-decoration:none; border-bottom:1px solid #7398d2; padding-bottom:10px; transition:color .2s ease; }
+.vx-faq__contact span { color:#8bb9ff; font-size:1.2rem; }
+.vx-faq__contact:hover,.vx-faq__contact:focus-visible { color:#89b9ff; }
+.vx-faq__list { max-width:none; border-top:1px solid rgba(171,197,235,.25); }
+.vx-faq .faq-item { border-bottom:1px solid rgba(171,197,235,.20); }
+.vx-faq__question-heading { margin:0; font-size:inherit; }
+.vx-faq .faq-item__q { cursor:pointer; gap:16px; padding:30px 0; font-size:clamp(1rem,1.35vw,1.22rem); line-height:1.5; transition:color .2s ease; }
+.vx-faq .faq-item__q:hover,.vx-faq .faq-item__q:focus-visible,.vx-faq .faq-item.is-open .faq-item__q { color:#a4c7ff; }
+.vx-faq__num { flex:0 0 34px; align-self:start; padding-top:5px; color:#789bd2; font:500 .67rem var(--font-display); letter-spacing:.1em; }
+.vx-faq__question { flex:1; }
+.vx-faq .faq-item__icon { width:19px; height:19px; color:#91b8f5; }
+.vx-faq .faq-item__a { padding-left:50px; }
+.vx-faq .faq-item__a p { max-width:580px; padding:0 0 28px; margin:0; color:#a8b7cd; line-height:1.8; font-size:.96rem; }
+.vx-faq .faq-item.is-open .faq-item__a { max-height:300px; }
+@media (max-width: 1000px) { .vx-faq__layout { grid-template-columns:1fr; gap:36px; } .vx-faq__intro { position:static; } .vx-faq__intro h2 { max-width:700px; } }
+@media (max-width:640px) { html { scroll-padding-top:78px; } .vx-faq .faq-item__q { padding:24px 0; } .vx-faq__num { flex-basis:30px; } .vx-faq .faq-item__a { padding-left:46px; } .vx-faq__intro h2 { font-size:clamp(2.55rem,10vw,4.2rem); } }
+@media (prefers-reduced-motion:reduce) { .navbar__links a::after,.vx-faq__contact,.vx-faq .faq-item__q { transition:none; } }
