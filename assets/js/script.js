@@ -44,6 +44,24 @@ document.addEventListener('DOMContentLoaded', () => {
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
+  /* ---- Section-aware navigation, without changing native anchor behavior ---- */
+  const navigationLinks = document.querySelectorAll('.navbar__links a[href^="#"]');
+  const sectionMap = new Map(Array.from(navigationLinks).map(link => [link.getAttribute('href').slice(1), link]));
+  if ('IntersectionObserver' in window) {
+    const sections = Array.from(sectionMap.keys()).map(id => document.getElementById(id)).filter(Boolean);
+    const updateActive = id => navigationLinks.forEach(link => {
+      const active = link.getAttribute('href') === '#' + id;
+      link.classList.toggle('is-active', active);
+      if (active) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+    const sectionObserver = new IntersectionObserver(entries => {
+      const candidates = entries.filter(entry => entry.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio);
+      if (candidates.length) updateActive(candidates[0].target.id);
+    }, { rootMargin: '-20% 0px -54% 0px', threshold: [0,.15,.4] });
+    sections.forEach(section => sectionObserver.observe(section));
+  }
+
   /* ---- Mobile menu ---- */
   const burger = document.querySelector('.navbar__burger');
   const mobileMenu = document.querySelector('.mobile-menu');
@@ -51,24 +69,42 @@ document.addEventListener('DOMContentLoaded', () => {
     burger.addEventListener('click', () => {
       const isOpen = mobileMenu.classList.toggle('is-open');
       burger.setAttribute('aria-expanded', String(isOpen));
+      burger.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
       document.body.style.overflow = isOpen ? 'hidden' : '';
     });
-    mobileMenu.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        mobileMenu.classList.remove('is-open');
-        document.body.style.overflow = '';
-      });
+    const closeMobileMenu = () => {
+      mobileMenu.classList.remove('is-open');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', 'Abrir menu');
+      document.body.style.overflow = '';
+    };
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileMenu));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && mobileMenu.classList.contains('is-open')) {
+        closeMobileMenu();
+        burger.focus();
+      }
     });
   }
 
-  /* ---- FAQ accordion ---- */
+  /* ---- Accessible single-open FAQ accordion ---- */
   document.querySelectorAll('.faq-item__q').forEach(btn => {
     btn.addEventListener('click', () => {
       const item = btn.closest('.faq-item');
-      const wasOpen = item.classList.contains('is-open');
-      item.parentElement.querySelectorAll('.faq-item').forEach(i => i.classList.remove('is-open'));
-      if (!wasOpen) item.classList.add('is-open');
-      btn.setAttribute('aria-expanded', String(!wasOpen));
+      const shouldOpen = !item.classList.contains('is-open');
+      item.parentElement.querySelectorAll('.faq-item').forEach(other => {
+        other.classList.remove('is-open');
+        const control = other.querySelector('.faq-item__q');
+        const panel = other.querySelector('.faq-item__a');
+        if (control) control.setAttribute('aria-expanded', 'false');
+        if (panel) panel.inert = true;
+      });
+      if (shouldOpen) {
+        item.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+        const panel = item.querySelector('.faq-item__a');
+        if (panel) panel.inert = false;
+      }
     });
   });
 
