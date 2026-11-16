@@ -1562,3 +1562,31 @@ html { scroll-padding-top: 90px; }
 @media (prefers-reduced-motion:reduce) {
   .vx-hero-proof::before,.vx-hero-proof__frame--main,.vx-hero-proof__frame--side { transform:none; }
 }
+
+
+/* Conversion refinement: contextual messages and a compact mobile action. */
+.vx-mobile-project-cta {
+  display:none;
+  text-decoration:none;
+  align-items:center;
+  justify-content:space-between;
+  position:fixed;
+  z-index:1200;
+  left:14px;
+  right:14px;
+  bottom:max(14px, env(safe-area-inset-bottom));
+  padding:14px 18px;
+  color:#07101e;
+  background:#82adff;
+  border:1px solid rgba(255,255,255,.38);
+  box-shadow:0 14px 38px rgba(0,0,0,.34);
+  font:650 .9rem var(--font-display);
+}
+.vx-mobile-project-cta span { font-size:1.2rem; }
+@media (max-width:640px) {
+  .vx-mobile-project-cta { display:flex; }
+  body { padding-bottom:76px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .vx-mobile-project-cta { scroll-behavior:auto; }
+}
